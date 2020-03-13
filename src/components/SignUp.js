@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useAuth } from './hooks/useAuth';
 
 export const SignUp = () => {
-  const [userName, setUserName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const { userName, setUserName, email, setEmail, password, setPassword } = useAuth();
 
   return (
     <section>
