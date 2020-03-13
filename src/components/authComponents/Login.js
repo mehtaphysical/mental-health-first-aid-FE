@@ -2,7 +2,7 @@ import React from 'react';
 import { useAuth } from '../../hooks/useAuth';
 
 export const Login = () => {
-  const { email, setEmail, password, setPassword, handleSubmit } = useAuth('login');
+  const { email, setEmail, password, setPassword, setRetypePassword, handleSubmit } = useAuth('login');
 
   return (
     <section>
@@ -15,9 +15,12 @@ export const Login = () => {
         </label>
         <label>Password: 
           <input 
-            type="text"
+            type="password"
             value={password}
-            onChange={({ target }) => setPassword(target.value)} />
+            onChange={({ target }) => {
+              setPassword(target.value);
+              setRetypePassword(target.value);
+            }} />
         </label>
         <button>Login</button>
       </form>
