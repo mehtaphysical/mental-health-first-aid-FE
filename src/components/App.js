@@ -1,6 +1,10 @@
 import React from 'react';
+import { SignUp } from './SignUp';
 
 export default function App() {
-  return <h1>Hello World</h1>;
+  return (
+    <>
+      <SignUp />
+    </>
+  );
 }
-  
