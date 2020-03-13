@@ -20,6 +20,7 @@ export const useAuth = (type) => {
         if(res.type === SET_SESSION_ERROR) {
           throw new Error('Singup/Login NOPE!');
         } else {
+          //change window.location.href
           console.log('SUCCESSFUL!');
         }
       });

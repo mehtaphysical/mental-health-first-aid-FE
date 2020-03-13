@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '../../hooks/useAuth';
 
 export const SignUp = () => {
   const { userName, setUserName, email, setEmail, password, setPassword, handleSubmit } = useAuth('signup');
@@ -19,7 +19,7 @@ export const SignUp = () => {
             onChange={({ target }) => setEmail(target.value)} />
         </label>
 
-        <label>Username: 
+        <label>Password: 
           <input type="password" 
             value={password} 
             onChange={({ target }) => setPassword(target.value)} />
