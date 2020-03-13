@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAuth } from './hooks/useAuth';
+import { useAuth } from '../hooks/useAuth';
 
 export const SignUp = () => {
   const { userName, setUserName, email, setEmail, password, setPassword, handleSubmit } = useAuth();
