@@ -2,11 +2,11 @@ import React from 'react';
 import { useAuth } from './hooks/useAuth';
 
 export const SignUp = () => {
-  const { userName, setUserName, email, setEmail, password, setPassword } = useAuth();
+  const { userName, setUserName, email, setEmail, password, setPassword, handleSubmit } = useAuth();
 
   return (
     <section>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label>Username: 
           <input type="text" 
             value={userName} 
@@ -24,8 +24,9 @@ export const SignUp = () => {
             value={password} 
             onChange={({ target }) => setPassword(target.value)} />
         </label>
+        <button>Sign Up</button>
       </form>
 
     </section>
   );
-}
+};

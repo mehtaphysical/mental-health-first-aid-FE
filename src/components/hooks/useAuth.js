@@ -5,5 +5,10 @@ export const useAuth = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  return { userName, setUserName, email, setEmail, password, setPassword };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(`You signed up with: UserName: ${userName}, email: ${email}, password: ${password}`);
+  };
+
+  return { userName, setUserName, email, setEmail, password, setPassword, handleSubmit };
 };
