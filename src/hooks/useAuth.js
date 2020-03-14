@@ -14,15 +14,14 @@ export const useAuth = (type) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const user = { email, userName, password };
-    const authFunction = (type === 'signup') ? getSignupUser : getLoginUser;
 
     if(password !== retypePassword) {
       console.log('Passwords must match');
     } else {
-      return dispatch(authorizeUser(user, authFunction))
+      return dispatch(authorizeUser(user, (type === 'signup') ? getSignupUser : getLoginUser))
         .then(res => {
           if(res.type === SET_SESSION_ERROR) {
-            throw new Error('Singup/Login NOPE!');
+            throw new Error(res.payload.message);
           } else {
             //change window.location.href
             console.log('SUCCESSFUL!');

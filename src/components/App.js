@@ -1,12 +1,10 @@
 import React from 'react';
-import { SignUp } from './authComponents/SignUp';
-import { Login } from './authComponents/Login';
+import { AuthPage } from './authComponents/AuthPage';
 
 export default function App() {
   return (
     <>
-      <SignUp />
-      <Login />
+      <AuthPage />
     </>
   );
 }
