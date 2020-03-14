@@ -2,7 +2,7 @@ import { SET_SESSION, SET_SESSION_ERROR, SET_SESSION_LOADING, SET_SESSION_DONE }
 
 const initialState = {
   user: null,
-  loading: false,
+  loading: true,
   error: null
 };
 

@@ -13,8 +13,8 @@ export const AuthPage = () => {
 
   return (
     <>
-      {signup ? <Signup /> : <Login />}
       <button onClick={() => setSignup(!signup)}>{buttonText}</button>
+      {signup ? <Signup /> : <Login />}
       {errorMessage}
     </> 
   );
