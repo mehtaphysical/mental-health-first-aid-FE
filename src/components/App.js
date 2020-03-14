@@ -10,6 +10,7 @@ import { AuthPage } from './authComponents/AuthPage';
 import { Footer } from './Footer';
 import { PrivateRoute } from './authComponents/PrivateRoute';
 import { Secret } from './Secret';
+import { Profile } from './profile/Profile';
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
       <Switch>
         <Route exact path='/auth' component={AuthPage} />
         <PrivateRoute exact path='/secret' component={Secret} />
+        <PrivateRoute exact path='/profile' component={Profile} />
       </Switch>
       <Footer />
     </Router>
