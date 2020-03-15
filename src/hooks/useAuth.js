@@ -23,7 +23,7 @@ export const useAuth = (type) => {
           if(res.type === SET_SESSION_ERROR) {
             throw new Error(res.payload.message);
           } else {
-            window.location.href = '/secret';
+            window.location.href = '/profile';
             console.log('SUCCESSFUL!');
           }
         });

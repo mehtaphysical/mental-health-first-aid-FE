@@ -6,10 +6,10 @@ import {
 } from 'react-router-dom';
 
 import { Header } from './Header';
+import { LandingPage } from './LandingPage'
 import { AuthPage } from './authComponents/AuthPage';
 import { Footer } from './Footer';
 import { PrivateRoute } from './authComponents/PrivateRoute';
-import { Secret } from './Secret';
 import { Profile } from './profile/Profile';
 
 export default function App() {
@@ -17,8 +17,8 @@ export default function App() {
     <Router>
       <Header />
       <Switch>
+        <Route exact path='/' component={LandingPage} />
         <Route exact path='/auth' component={AuthPage} />
-        <PrivateRoute exact path='/secret' component={Secret} />
         <PrivateRoute exact path='/profile' component={Profile} />
       </Switch>
       <Footer />
