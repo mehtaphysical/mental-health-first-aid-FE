@@ -1,30 +1,8 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { sendMessage, SET_MESSAGE_ERROR } from '../actions/messageActions';
+import React from 'react';
+import { useMessageForm } from '../hooks/useMessageForm';
 
 export const MessageForm = () => {
-  const dispatch = useDispatch();
-
-  const [message, setMessage] = useState('');
-  const [friendCode, setFriendCode] = useState('');
-  const [author, setAuthor] = useState('');
-  const [success, setSuccess] = useState(false);
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    return dispatch(sendMessage({ message, friendCode, author }))
-      .then(res => {
-        if(res.type === SET_MESSAGE_ERROR) {
-          throw new Error(res.payload.message);
-        } else {
-          setMessage('');
-          setFriendCode('');
-          setAuthor('');
-          setSuccess(true);
-        }
-      });
-  };
+  const { message, setMessage, friendCode, setFriendCode, author, setAuthor, success, setSuccess, handleSubmit } = useMessageForm();
 
   return success ? (
     <section>
@@ -35,7 +13,7 @@ export const MessageForm = () => {
     <section>
       <form onSubmit={handleSubmit}>
         <label>Message: 
-          <input required
+          <textarea required
             type="text"
             value={message} 
             onChange={({ target }) => setMessage(target.value)} />
