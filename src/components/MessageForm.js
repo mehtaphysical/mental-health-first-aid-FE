@@ -8,6 +8,7 @@ export const MessageForm = () => {
   const [message, setMessage] = useState('');
   const [friendCode, setFriendCode] = useState('');
   const [author, setAuthor] = useState('');
+  const [success, setSuccess] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -17,16 +18,25 @@ export const MessageForm = () => {
         if(res.type === SET_MESSAGE_ERROR) {
           throw new Error(res.payload.message);
         } else {
-          console.log('You posted a message!!!')
+          setMessage('');
+          setFriendCode('');
+          setAuthor('');
+          setSuccess(true);
         }
       });
   };
 
-  return (
+  return success ? (
+    <section>
+      <p>Thanks for sending some love!</p>
+      <button onClick={() => setSuccess(false)}>Send Another?</button>
+    </section>
+  ) : (
     <section>
       <form onSubmit={handleSubmit}>
-        <label>Message (required): 
-          <input type="text" 
+        <label>Message: 
+          <input required
+            type="text"
             value={message} 
             onChange={({ target }) => setMessage(target.value)} />
         </label>
