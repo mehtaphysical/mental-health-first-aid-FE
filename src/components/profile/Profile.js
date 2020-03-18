@@ -12,6 +12,7 @@ export const Profile = () => {
       <h1>Profile</h1>
       <h2>Welcome back {user.userName}</h2>
       {img}
+      <h3>Friend Code: {user.friendCode}</h3>
     </section>
   );
 };

@@ -11,6 +11,7 @@ import { AuthPage } from './authComponents/AuthPage';
 import { Footer } from './Footer';
 import { PrivateRoute } from './authComponents/PrivateRoute';
 import { Profile } from './profile/Profile';
+import { MessageForm } from './MessageForm';
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
         <Route exact path='/' component={LandingPage} />
         <Route exact path='/auth' component={AuthPage} />
         <PrivateRoute exact path='/profile' component={Profile} />
+        <Route path='/message' component={MessageForm} />
       </Switch>
       <Footer />
     </Router>
