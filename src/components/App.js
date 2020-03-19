@@ -12,6 +12,7 @@ import { Footer } from './Footer';
 import { PrivateRoute } from './authComponents/PrivateRoute';
 import { Profile } from './profile/Profile';
 import { MessageForm } from './MessageForm';
+import { Positives } from './profile/Positives';
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
         <Route exact path='/auth' component={AuthPage} />
         <PrivateRoute exact path='/profile' component={Profile} />
         <Route path='/message' component={MessageForm} />
+        <Route path='/positives' component={Positives} />
       </Switch>
       <Footer />
     </Router>

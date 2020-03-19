@@ -1,4 +1,4 @@
-import { postMessage } from '../services/messageServices';
+import { postMessage, getMessages } from '../services/messageServices';
 
 export const SET_MESSAGE_LOADING = 'SET_MESSAGE_LOADING';
 export const SET_MESSAGE_DONE = 'SET_MESSAGE_DONE';
