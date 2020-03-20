@@ -5,16 +5,25 @@ import { Positive } from './Positive';
 
 export const Positives = () => {
   const [positives, setPositives] = useState();
+  const [currentPositive, setCurrentPositive] = useState();
 
   useEffect(() => {
     getMessages()
       .then(positives => {
         setPositives(positives);
+        const index = Math.floor(Math.random() * positives.length);
+        setCurrentPositive(positives[index]);
       });
   }, []);
 
-  const render = positives ? (
-    positives.map((positive) => <Positive key={positive._id} message={positive.message} author={positive.author} />)
+  const getNewCurrentPositive = () => {
+    console.log('I was clicked');
+    const index = Math.floor(Math.random() * positives.length);
+    setCurrentPositive(positives[index]);
+  };
+
+  const render = currentPositive ? (
+    <Positive key={currentPositive._id} message={currentPositive.message} author={currentPositive.author} />
   ) : (
     <p>Loading...</p>
   );
@@ -23,6 +32,7 @@ export const Positives = () => {
     <section>
       <h1>Positives</h1>
       {render}
+      <button onClick={getNewCurrentPositive}>Get Another</button>
     </section>
   );
 };

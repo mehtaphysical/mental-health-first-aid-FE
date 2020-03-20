@@ -1,4 +1,4 @@
-import { postMessage, getMessages } from '../services/messageServices';
+import { postMessage } from '../services/messageServices';
 
 export const SET_MESSAGE_LOADING = 'SET_MESSAGE_LOADING';
 export const SET_MESSAGE_DONE = 'SET_MESSAGE_DONE';
@@ -20,6 +20,7 @@ export const setMessageError = error => ({
 });
 
 export const sendMessage = (message) => dispatch => {
+  if(!message.author) message.author = 'anonymous';
   dispatch(setMessageLoading());
   return postMessage(message)
     .then(() => {
