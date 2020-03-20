@@ -1,5 +1,12 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
-export const Header = () => (
-  <h1>Mental Health First Aid Kit</h1>
-);
+export const Header = () => {
+  return (
+    <section>
+      <h1>Mental Health First Aid Kit</h1>
+      <NavLink to='/profile'>Profile</NavLink>
+      <NavLink to='/message'>Send Message</NavLink>
+    </section>
+  )
+};
