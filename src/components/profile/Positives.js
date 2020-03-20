@@ -13,9 +13,15 @@ export const Positives = () => {
   const getNewCurrentPositive = () => {
     getMessages()
       .then(positives => {
-        const index = Math.floor(Math.random() * positives.length);
-        setCurrentPositive(positives[index]);
-        updateMessage(positives[index]._id, { seen: true });
+        const unread = positives.find(positive => !positive.seen);
+        console.log(unread);
+        if(unread) {
+          setCurrentPositive(unread);
+          updateMessage(unread._id, { seen: true });
+        } else {
+          const index = Math.floor(Math.random() * positives.length);
+          setCurrentPositive(positives[index]);
+        }
       });
   };
 
