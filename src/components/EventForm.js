@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { sendEvent, SET_EVENT_ERROR } from '../actions/eventActions';
 
 export const EventForm = () => {
+  const dispatch = useDispatch();
   const [title, setTitle] = useState('');
   const [date, setDate] = useState();
   const [success, setSuccess] = useState(false);
@@ -10,12 +13,23 @@ export const EventForm = () => {
   const month = today.getMonth()+1; //January is 0!
   const year = today.getFullYear();
   const now = `${year}-${month}-${day}`;
-  console.log(now);
 
-  const handleSubmit = () => {
-    console.log('clicked');
-    setSuccess(true);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const event = { title, date };
+
+    return dispatch(sendEvent(event))
+      .then(res => {
+        if(res.type === SET_EVENT_ERROR) {
+          throw new Error(res.payload.message);
+        } else {
+          setSuccess(true);
+        }
+      });
   };
+
+  console.log(date);
 
 
   return success ? (
