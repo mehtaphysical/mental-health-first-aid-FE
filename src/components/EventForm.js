@@ -33,7 +33,7 @@ export const EventForm = () => {
 
 
   return success ? (
-    <p>Your Event has been created</p>
+    <p>Your Event has been created! You are looking forward to {title} on {date}!</p>
   ) : (
     <section>
       <form onSubmit={handleSubmit}>
