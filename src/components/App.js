@@ -13,6 +13,7 @@ import { PrivateRoute } from './authComponents/PrivateRoute';
 import { Profile } from './profile/Profile';
 import { MessageForm } from './MessageForm';
 import { Positives } from './profile/Positives';
+import { EventForm } from './EventForm';
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
         <PrivateRoute exact path='/profile' component={Profile} />
         <Route path='/message' component={MessageForm} />
         <PrivateRoute path='/positives' component={Positives} />
+        <PrivateRoute path='/event' component={EventForm} />
       </Switch>
       <Footer />
     </Router>
