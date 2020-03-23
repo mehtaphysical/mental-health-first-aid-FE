@@ -14,8 +14,8 @@ export const Positives = () => {
 
   return (
     <section>
-      <h1>Positives</h1>
-      <h2>Unread: {totalUnread > 0 ? totalUnread - 1 : totalUnread}</h2>
+      <h2>Positives</h2>
+      <h3>Unread: {totalUnread > 0 ? totalUnread - 1 : totalUnread}</h3>
       {render}
       <button onClick={getNewCurrentPositive}>Get Another</button>
     </section>
