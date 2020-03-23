@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 
 export const Positive = ({ message, author, seen }) => (
   <>
-    {seen ? (<></>) : (<p>NEW!</p>)}
-    <p>&quot;{message}&quot;</p>
-    <p>-{author}</p>
+    <p>{seen ? (<></>) : (<p>NEW!</p>)}&quot;{message}&quot;</p>
+    <p>from {author}</p>
   </>
 );
 

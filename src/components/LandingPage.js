@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 export const LandingPage = () => {
   const history = useHistory();
 
+
   const handleClick = () => {
     history.push('/auth');
   };

@@ -1,23 +1,32 @@
 import React from 'react';
 import { Positive } from './Positive';
 import { usePositives } from '../../hooks/usePositives';
+import { useHistory } from 'react-router-dom';
 
 
 export const Positives = () => {
-  const { currentPositive, totalUnread, getNewCurrentPositive } = usePositives();
+  const history = useHistory();
+  const { currentPositive, totalUnread, display, setDisplay, getNewCurrentPositive } = usePositives();
 
-  const render = currentPositive ? (
+  const render = currentPositive._id ? (
     <Positive key={currentPositive._id} message={currentPositive.message} author={currentPositive.author} seen={currentPositive.seen} />
   ) : (
-    <p>Loading...</p>
+    <></>
   );
 
   return (
     <section>
-      <h2>Positives</h2>
-      <h3>Unread: {totalUnread > 0 ? totalUnread - 1 : totalUnread}</h3>
-      {render}
-      <button onClick={getNewCurrentPositive}>Get Another</button>
+      <h2 onClick={() => setDisplay(!display)}>Positives</h2>
+      {display ? (
+        <div>
+          {totalUnread > 0 ? (<h3>{totalUnread - 1} new</h3>) : (<></>)}
+          {render}
+          <button onClick={getNewCurrentPositive}>Get Another</button>
+          <button onClick={() => history.push('/message')}>Create New</button>
+        </div>
+      ) : (
+        <></>
+      )}
     </section>
   );
 };

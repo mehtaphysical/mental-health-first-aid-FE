@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 import { getMessages, updateMessage } from '../services/messageServices';
 
 export const usePositives = () => {
-  const [currentPositive, setCurrentPositive] = useState();
+  const [currentPositive, setCurrentPositive] = useState({ _id: false });
   const [totalUnread, setTotalUnread] = useState(0);
+  const [display, setDisplay] = useState(false);
 
   useEffect(() => {
     getNewCurrentPositive();
@@ -24,12 +25,16 @@ export const usePositives = () => {
         if(unreadPositive) {
           setCurrentPositive(unreadPositive);
           updateMessage(unreadPositive._id, { seen: true });
+
         } else {
-          const index = Math.floor(Math.random() * positives.length);
+          let index = Math.floor(Math.random() * positives.length);
+          while(currentPositive._id === positives[index]._id && positives.length > 1) {
+            index = Math.floor(Math.random() * positives.length);
+          }
           setCurrentPositive(positives[index]);
         }
       });
   };
 
-  return { currentPositive, totalUnread, getNewCurrentPositive };
+  return { currentPositive, totalUnread, display, setDisplay, getNewCurrentPositive };
 };
