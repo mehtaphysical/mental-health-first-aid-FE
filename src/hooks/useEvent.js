@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 export const useEvent = () => {
   const { user: { event } } = useSelector(toGetAuth);
   const [date, setDate] = useState();
-  const [showEventForm, setShowEventForm] = useState(!date);
+  const [showEventForm, setShowEventForm] = useState(!!date);
 
   useEffect(() => {
     if(event && !date) setDate(getMmDd(event.date));

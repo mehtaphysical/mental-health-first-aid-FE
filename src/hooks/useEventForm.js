@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { sendEvent, SET_EVENT_ERROR } from '../actions/eventActions';
 
-export const useEventForm = ( exsistingTitle = '', exsistingDate = '') => {
+export const useEventForm = (exsistingTitle = '', exsistingDate = '') => {
   const dispatch = useDispatch();
   const [title, setTitle] = useState(exsistingTitle);
   const [date, setDate] = useState(exsistingDate);
