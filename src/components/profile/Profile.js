@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { toGetAuth } from '../../selectors/useSelectors';
 import { Positives } from './Positives';
 import { Event } from './Event';
+import { Option } from './Option';
 
 export const Profile = () => {
   const { user } = useSelector(toGetAuth);
@@ -14,6 +15,7 @@ export const Profile = () => {
       <img src={user.avatar} />
       <h3>Friend Code: {user.friendCode}</h3>
       <Positives />
+      <Option inPos={'Event'}/>
     </section>
   );
 };
