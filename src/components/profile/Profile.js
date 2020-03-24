@@ -6,16 +6,21 @@ import { Event } from './Event';
 import { Option } from './Option';
 
 export const Profile = () => {
-  const { user } = useSelector(toGetAuth);
+  const { user: { userName, collections, avatar, friendCode } } = useSelector(toGetAuth);
+
+  const renderOptions = collections ? collections.map(collection => {
+    return (<Option key={collection} componentName={collection} />);
+  }) : (<></>);
 
   return (
     <section>
-      <h2>Welcome back {user.userName}</h2>
+      <h2>Welcome back {userName}</h2>
       <Event />
-      <img src={user.avatar} />
-      <h3>Friend Code: {user.friendCode}</h3>
+      <img src={avatar} />
+      <h3>Friend Code: {friendCode}</h3>
       <Positives />
-      <Option inPos={'Event'}/>
+      {renderOptions}
+      <Option />
     </section>
   );
 };
