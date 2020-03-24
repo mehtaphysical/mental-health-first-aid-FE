@@ -16,7 +16,10 @@ export const Positives = () => {
 
   return (
     <section>
-      <h2 onClick={() => setDisplay(!display)}>Positives</h2>
+      <h2 onClick={() => {
+        if(!display) getNewCurrentPositive();
+        setDisplay(!display);
+      }}>Positives{totalUnread > 0 ? (<span> - {totalUnread} new</span>) : (<></>)}</h2>
       {display ? (
         <div>
           {totalUnread > 0 ? (<h3>{totalUnread - 1} new</h3>) : (<></>)}
