@@ -1,6 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { sendEvent, SET_EVENT_ERROR } from '../actions/eventActions';
+import { getVerifyUser } from '../services/authServices';
+import { authorizeUser } from '../actions/authActions';
 
 export const useEventForm = (exsistingTitle = '', exsistingDate = '') => {
   const dispatch = useDispatch();
@@ -17,6 +19,7 @@ export const useEventForm = (exsistingTitle = '', exsistingDate = '') => {
           throw new Error(res.payload.message);
         } else {
           setSuccess(true);
+          dispatch(authorizeUser('', getVerifyUser));
         }
       });
   };

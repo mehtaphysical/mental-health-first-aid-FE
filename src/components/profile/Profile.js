@@ -15,9 +15,9 @@ export const Profile = () => {
   return (
     <section>
       <h2>Welcome back {userName}</h2>
-      <Event />
-      <img src={avatar} />
       <h3>Friend Code: {friendCode}</h3>
+      <img src={avatar} />
+      <Event />
       <Positives />
       {renderOptions}
       <Option />
