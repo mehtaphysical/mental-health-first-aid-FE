@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { toGetAuth } from '../../selectors/useSelectors';
-import { Positives } from './Positives';
+import { Avatar } from './Avatar';
 import { Event } from './Event';
 import { Option } from './Option';
 
@@ -16,9 +16,8 @@ export const Profile = () => {
     <section>
       <h2>Welcome back {userName}</h2>
       <h3>Friend Code: {friendCode}</h3>
-      <img src={avatar} />
+      <Avatar avatar={avatar} />
       <Event />
-      <Positives />
       {renderOptions}
       <Option />
     </section>

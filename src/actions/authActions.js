@@ -1,3 +1,5 @@
+import { getUpdateUser } from '../services/authServices'; 
+
 export const SET_SESSION_LOADING = 'SET_SESSION_LOADING';
 export const SET_SESSION_DONE = 'SET_SESSION_DONE';
 export const SET_SESSION = 'SET_SESSION';
@@ -20,6 +22,16 @@ export const setSessionError = error => ({
 export const authorizeUser = (user, authFunction) => dispatch => {
   dispatch(setSessionLoading());
   return authFunction(user)
+    .then(user => {
+      dispatch(setSession(user));
+      return dispatch(setSessionDone());
+    })
+    .catch(authError => dispatch(setSessionError(authError)));
+};
+
+export const updateUser = body => dispatch => {
+  dispatch(setSessionLoading());
+  return getUpdateUser(body)
     .then(user => {
       dispatch(setSession(user));
       return dispatch(setSessionDone());

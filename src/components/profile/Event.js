@@ -4,7 +4,7 @@ import { useEvent } from '../../hooks/useEvent';
 
 export const Event = () => {
   const  { event, date, showEventForm, setShowEventForm } = useEvent();
-  const { title: titleInput, setTitle, date: dateInput, setDate, success, setSuccess, handleSubmit } = useEventForm(event.title, event.date);
+  const { title: titleInput, setTitle, date: dateInput, setDate, handleSubmit } = useEventForm(event.title, event.date);
 
   return !showEventForm ? (
     <>
