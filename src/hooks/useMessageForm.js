@@ -7,7 +7,7 @@ export const useMessageForm = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  const friendCodeFromURL = location.hash.slice(1);
+  const friendCodeFromURL = new URLSearchParams(location.search).get('friendcode');
 
   const [message, setMessage] = useState('');
   const [friendCode, setFriendCode] = useState(friendCodeFromURL);
@@ -30,5 +30,5 @@ export const useMessageForm = () => {
       });
   };
 
-  return { message, setMessage, friendCode, setFriendCode, author, setAuthor, success, setSuccess, handleSubmit };
+  return { message, setMessage, friendCode, setFriendCode, author, setAuthor, success, setSuccess, handleSubmit, friendCodeFromURL };
 };

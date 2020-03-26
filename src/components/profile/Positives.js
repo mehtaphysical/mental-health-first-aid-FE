@@ -24,10 +24,9 @@ export const Positives = () => {
       }}>Positives{totalUnread > 0 ? (<span> - {totalUnread} new</span>) : (<></>)}</h2>
       {display ? (
         <div>
-          {totalUnread > 0 ? (<h3>{totalUnread - 1} new</h3>) : (<></>)}
           {render}
           <button onClick={getNewCurrentPositive}>Get Another</button>
-          <button onClick={() => history.push(`/message#${friendCode}`)}>Create New</button>
+          <button onClick={() => history.push(`/message?friendcode=${friendCode}`)}>Create New</button>
         </div>
       ) : (
         <></>

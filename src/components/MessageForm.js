@@ -2,7 +2,7 @@ import React from 'react';
 import { useMessageForm } from '../hooks/useMessageForm';
 
 export const MessageForm = () => {
-  const { message, setMessage, friendCode, setFriendCode, author, setAuthor, success, setSuccess, handleSubmit } = useMessageForm();
+  const { message, setMessage, friendCode, setFriendCode, author, setAuthor, success, setSuccess, handleSubmit, friendCodeFromURL } = useMessageForm();
 
   return success ? (
     <section>
@@ -19,11 +19,11 @@ export const MessageForm = () => {
             onChange={({ target }) => setMessage(target.value)} />
         </label>
 
-        <label>Friend Code (required): 
-          <input type="text" 
+        {!friendCodeFromURL ? (<label>Friend Code: 
+          <input type="text" required
             value={friendCode} 
             onChange={({ target }) => setFriendCode(target.value)} />
-        </label>
+        </label>) : (<></>)}
 
         <label>Author: 
           <input type="text" 

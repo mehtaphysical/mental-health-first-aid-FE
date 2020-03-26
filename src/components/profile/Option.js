@@ -6,14 +6,14 @@ import { Positives } from './Positives';
 export const Option = ({ componentName }) => {
   const [display, setDisplay] = useState(false);
 
-  const components = { 
+  const componentDictionary = { 
     Event: <Event />, 
     Positives: <Positives /> };
 
   const renderOptions = display ? (
     <>
       <button>Collection</button>
-      <button>Something</button>
+      <button>Notes</button>
       <button onClick={() => setDisplay(false)}>Cancel</button>
     </>
   ) : (
@@ -21,10 +21,10 @@ export const Option = ({ componentName }) => {
     </>
   );
 
-  return componentName ?
-    components[componentName]
-    :
-    (<div>
+  return componentName ? (
+    componentDictionary[componentName]
+  ) : (
+    <div>
       <h5 onClick={() => setDisplay(true)}>Click to add collection</h5>
       {renderOptions}
     </div>);
