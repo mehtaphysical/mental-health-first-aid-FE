@@ -7,10 +7,10 @@ export const useAvatar = () => {
   const [display, setDisplay] = useState(false);
   const [url, setUrl] = useState('');
 
-  const handleSubmit = () => dispatch(updateUser({ avatar: url }))
+  const handleSubmit = () => url ? dispatch(updateUser({ avatar: url }))
     .then(res => {
       if(res.type === SET_SESSION_ERROR) throw new Error(res.payload.message);
-    });
+    }) : url;
 
 
   return { display, setDisplay, url, setUrl, handleSubmit };

@@ -2,9 +2,11 @@ import React from 'react';
 import { Positive } from './Positive';
 import { usePositives } from '../../hooks/usePositives';
 import { useHistory } from 'react-router-dom';
-
+import { useSelector } from 'react-redux';
+import { toGetAuth } from '../../selectors/useSelectors';
 
 export const Positives = () => {
+  const { user: { friendCode } } = useSelector(toGetAuth);
   const history = useHistory();
   const { currentPositive, totalUnread, display, setDisplay, getNewCurrentPositive } = usePositives();
 
@@ -25,7 +27,7 @@ export const Positives = () => {
           {totalUnread > 0 ? (<h3>{totalUnread - 1} new</h3>) : (<></>)}
           {render}
           <button onClick={getNewCurrentPositive}>Get Another</button>
-          <button onClick={() => history.push('/message')}>Create New</button>
+          <button onClick={() => history.push(`/message#${friendCode}`)}>Create New</button>
         </div>
       ) : (
         <></>

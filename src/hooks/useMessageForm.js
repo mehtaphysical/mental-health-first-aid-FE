@@ -1,12 +1,16 @@
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { sendMessage, SET_MESSAGE_ERROR } from '../actions/messageActions';
+import { useLocation } from 'react-router-dom';
 
 export const useMessageForm = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
+
+  const friendCodeFromURL = location.hash.slice(1);
 
   const [message, setMessage] = useState('');
-  const [friendCode, setFriendCode] = useState('');
+  const [friendCode, setFriendCode] = useState(friendCodeFromURL);
   const [author, setAuthor] = useState('');
   const [success, setSuccess] = useState(false);
 
