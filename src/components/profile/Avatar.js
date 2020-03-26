@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { useAvatar } from '../../hooks/useAvatar';
 
 export const Avatar = ({ avatar }) => {
-  const [display, setDisplay] = useState(false);
-  const [url, setUrl] = useState('');
+  const { display, setDisplay, url, setUrl, handleSubmit } = useAvatar();
 
   const renderForm = display ? (
     <div>
@@ -11,9 +11,7 @@ export const Avatar = ({ avatar }) => {
         type='text'
         value={url}
         onChange={({ target }) => setUrl(target.value)} />
-      <button onClick={() => {
-        console.log('Submitted!');
-      }}>Update</button>
+      <button onClick={handleSubmit}>Update</button>
       <button onClick={() => {
         setDisplay(false);
         setUrl('');
