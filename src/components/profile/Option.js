@@ -25,7 +25,7 @@ export const Option = ({ componentName }) => {
     componentDictionary[componentName]
   ) : (
     <div>
-      <h5 onClick={() => setDisplay(true)}>Click to add collection</h5>
+      <h5 onClick={() => setDisplay(true)}>+ Click to add collection +</h5>
       {renderOptions}
     </div>);
 };

@@ -1,12 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { getMessages, updateMessage } from '../services/messageServices';
 
 export const usePositives = () => {
   const [currentPositive, setCurrentPositive] = useState({ _id: false });
+  const [loading, setLoading] = useState(true);
   const [totalUnread, setTotalUnread] = useState(0);
   const [display, setDisplay] = useState(false);
 
+  useEffect(() => {
+    getNewCurrentPositive();
+  }, []);
+
+  useEffect(() => {
+    setLoading(false);
+  }, [currentPositive]);
+
   const getNewCurrentPositive = () => {
+    setLoading(true);
     getMessages()
       .then(positives => {
         const countUnread = positives.reduce((acc, positive) => {
@@ -33,5 +43,5 @@ export const usePositives = () => {
       });
   };
 
-  return { currentPositive, totalUnread, display, setDisplay, getNewCurrentPositive };
+  return { currentPositive, totalUnread, display, setDisplay, getNewCurrentPositive, loading };
 };

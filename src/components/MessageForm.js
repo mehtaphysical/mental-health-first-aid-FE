@@ -1,13 +1,16 @@
 import React from 'react';
 import { useMessageForm } from '../hooks/useMessageForm';
+import { useHistory } from 'react-router-dom';
 
 export const MessageForm = () => {
   const { message, setMessage, friendCode, setFriendCode, author, setAuthor, success, setSuccess, handleSubmit, friendCodeFromURL } = useMessageForm();
+  const history = useHistory();
 
   return success ? (
     <section>
       <p>Thanks for sending some love!</p>
       <button onClick={() => setSuccess(false)}>Send Another?</button>
+      <button onClick={() => history.push('/profile')}>To Profile</button>
     </section>
   ) : (
     <section>

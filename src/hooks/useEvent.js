@@ -15,12 +15,10 @@ export const useEvent = () => {
 
   const getMmDd = (date) => {
     const formattedDate =  new Date(date);
-    console.log(formattedDate);
     const weekday = weekdaysArray[formattedDate.getDay()];
     const month = monthArray[formattedDate.getMonth()];
     const day = formattedDate.getDate();
-    const time = formattedDate.getHours();
-    return `${weekday}, ${month} ${day}, at ${time > 12 ? time - 12 + 'pm' : time + 'am'}`;
+    return `${weekday}, ${month} ${day}`;
   };
 
   return { event, date, showEventForm, setShowEventForm };

@@ -10,7 +10,7 @@ export const useMessageForm = () => {
   const friendCodeFromURL = new URLSearchParams(location.search).get('friendcode');
 
   const [message, setMessage] = useState('');
-  const [friendCode, setFriendCode] = useState(friendCodeFromURL);
+  const [friendCode, setFriendCode] = useState(friendCodeFromURL ? friendCodeFromURL : '');
   const [author, setAuthor] = useState('');
   const [success, setSuccess] = useState(false);
 
