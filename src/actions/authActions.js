@@ -24,7 +24,8 @@ export const authorizeUser = (user, authFunction) => dispatch => {
   return authFunction(user)
     .then(user => {
       dispatch(setSession(user));
-      return dispatch(setSessionDone());
+      dispatch(setSessionDone());
+      return user;
     })
     .catch(authError => dispatch(setSessionError(authError)));
 };

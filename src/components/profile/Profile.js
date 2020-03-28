@@ -4,6 +4,7 @@ import { toGetAuth } from '../../selectors/useSelectors';
 import { Avatar } from './Avatar';
 import { Event } from './Event';
 import { Option } from './Option';
+import { Positives } from './Positives';
 
 export const Profile = () => {
   const { user: { userName, collections, avatar, friendCode } } = useSelector(toGetAuth);
@@ -18,6 +19,7 @@ export const Profile = () => {
       <h3>Friend Code: {friendCode}</h3>
       <Avatar avatar={avatar} />
       <Event />
+      <Positives />
       {renderOptions}
       <Option />
     </section>

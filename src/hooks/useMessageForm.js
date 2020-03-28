@@ -7,11 +7,13 @@ export const useMessageForm = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  const friendCodeFromURL = new URLSearchParams(location.search).get('friendcode');
+  const searchParams = new URLSearchParams(location.search);
+  const friendCodeFromURL = searchParams.get('friendcode');
+  const usernameFromURL = searchParams.get('username');
 
   const [message, setMessage] = useState('');
   const [friendCode, setFriendCode] = useState(friendCodeFromURL ? friendCodeFromURL : '');
-  const [author, setAuthor] = useState('');
+  const [author, setAuthor] = useState(usernameFromURL ? usernameFromURL : '');
   const [success, setSuccess] = useState(false);
 
   const handleSubmit = (event) => {
@@ -30,5 +32,5 @@ export const useMessageForm = () => {
       });
   };
 
-  return { message, setMessage, friendCode, setFriendCode, author, setAuthor, success, setSuccess, handleSubmit, friendCodeFromURL };
+  return { message, setMessage, friendCode, setFriendCode, author, setAuthor, success, setSuccess, handleSubmit, friendCodeFromURL, usernameFromURL };
 };

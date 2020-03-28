@@ -21,11 +21,12 @@ export const Event = () => {
   ) : (
     <>
       <p>You are looking forward to
+        <br/>
         <input required
           type="text"
           value={titleInput} 
           onChange={({ target }) => setTitle(target.value)} />
-        on 
+        <br/>on 
         <input type="date" 
           value={formattedDate} 
           onChange={({ target }) => setDate(target.value)} /></p>

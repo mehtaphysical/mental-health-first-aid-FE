@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authorizeUser, SET_SESSION_ERROR } from '../actions/authActions';
 import { getSignupUser, getLoginUser } from '../services/authServices';
+import { useHistory } from 'react-router-dom';
 
 export const useAuth = (type) => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
@@ -23,8 +25,7 @@ export const useAuth = (type) => {
           if(res.type === SET_SESSION_ERROR) {
             throw new Error(res.payload.message);
           } else {
-            window.location.href = '/profile';
-            console.log('SUCCESSFUL!');
+            history.push(type === 'login' ? '/profile' : `/newuser?friendcode=${res.friendCode}&username=${res.userName}`);
           }
         });
     }
