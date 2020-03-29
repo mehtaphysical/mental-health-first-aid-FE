@@ -14,7 +14,7 @@ import { NewUser } from './NewUser';
 import { Profile } from './profile/Profile';
 import { MessageForm } from './MessageForm';
 import { Breathing } from './Breathing';
-import { NoteForm } from './NoteForm';
+import { MoodForm } from './MoodForm';
 
 export default function App() {
   return (
@@ -27,7 +27,7 @@ export default function App() {
         <PrivateRoute path='/newuser' component={NewUser} />
         <PrivateRoute exact path='/profile' component={Profile} />
         <Route path='/breathing' component={Breathing} />
-        <PrivateRoute path='/note' component={NoteForm} />
+        <Route path='/mood' component={MoodForm} />
       </Switch>
       <Footer />
     </Router>
