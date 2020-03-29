@@ -27,7 +27,9 @@ export const MoodForm = () => {
         </label>
         <br/>
         <p>What helps me is:</p>
-        <ul>
+        <ul onKeyPress={(event) => {
+          if(event.key === 'Enter') setSolutions([...solutions, 'new']);
+        }}>
           {renderSolutions}
         </ul>
         <button onClick={() => {

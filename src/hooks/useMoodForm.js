@@ -21,7 +21,9 @@ export const useMoodForm = () => {
         if(res.type === SET_MOOD_ERROR) {
           throw new Error(res.payload.message);
         } else {
-          console.log('Successful!!!');
+          setSuccess(true);
+          setMoodName('');
+          setSolutions(['new']);
         }
       });
   };
