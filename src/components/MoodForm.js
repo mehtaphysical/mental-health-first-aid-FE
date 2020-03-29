@@ -7,10 +7,9 @@ export const MoodForm = () => {
   const { success, handleSubmit, moodName, setMoodName, solutions, setSolutions } = useMoodForm();
 
   const renderSolutions = solutions.map((solution, index) => (
-    <>
-      <br/>
-      <Solution setSolutions={setSolutions} solutions={solutions} index={index} key={index} />
-    </>
+    <li key={index}>
+      <Solution setSolutions={setSolutions} solutions={solutions} index={index} />
+    </li>
   ));
 
   return success ? (
@@ -28,7 +27,9 @@ export const MoodForm = () => {
         </label>
         <br/>
         <p>What helps me is:</p>
-        {renderSolutions}
+        <ul>
+          {renderSolutions}
+        </ul>
         <button onClick={() => {
           setSolutions([...solutions, 'new']);
         }}>Add</button>

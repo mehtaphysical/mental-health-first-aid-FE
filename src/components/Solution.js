@@ -10,8 +10,9 @@ export const Solution = ({ solutions, setSolutions, index }) => {
         type="text"
         value={solution}
         onChange={({ target }) => {
-          // setSolutions([solutions[index] = target.value, ...solutions]);
-          console.log(index);
+          const editedSolutions = solutions;
+          editedSolutions[index] = target.value;
+          setSolutions(editedSolutions);
           setSolution(target.value);
         }} />
     </label>
