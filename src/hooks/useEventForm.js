@@ -10,7 +10,7 @@ export const useEventForm = (exsistingTitle = '', exsistingDate = '') => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const event = { title, date };
+    const event = { title, date: date.replace('T00', 'T12') };
 
     return dispatch(updateUser({ event }))
       .then(res => {

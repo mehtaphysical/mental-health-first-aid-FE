@@ -32,6 +32,7 @@ export const usePositives = () => {
           } else {
             let index = Math.floor(Math.random() * positives.length);
             while(currentPositive._id === positives[index]._id && positives.length > 1) {
+              console.log('in while');
               index = Math.floor(Math.random() * positives.length);
             }
             setCurrentPositive(positives[index]);

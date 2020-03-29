@@ -5,12 +5,12 @@ import { useState, useEffect } from 'react';
 export const useEvent = () => {
   const { user: { event } } = useSelector(toGetAuth);
   const [date, setDate] = useState();
-  const [showEventForm, setShowEventForm] = useState(!!date);
+  const [showEventForm, setShowEventForm] = useState(false);
   const monthArray = ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const weekdaysArray = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
   useEffect(() => {
-    if(event && !date) setDate(getMmDd(event.date));
+    setDate(getMmDd(event.date));
   }, []);
 
   const getMmDd = (date) => {

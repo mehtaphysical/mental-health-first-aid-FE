@@ -1,10 +1,8 @@
 import React from 'react';
 import { useMessageForm } from '../hooks/useMessageForm';
-import { useHistory } from 'react-router-dom';
 
 export const MessageForm = () => {
   const { message, setMessage, friendCode, setFriendCode, author, setAuthor, success, setSuccess, handleSubmit, friendCodeFromURL, usernameFromURL } = useMessageForm();
-  const history = useHistory();
 
   return success ? (
     <section>
