@@ -2,7 +2,7 @@ import { SET_ALL_MESSAGES, SET_MESSAGE_ERROR, SET_MESSAGE_LOADING, SET_MESSAGE_D
 
 const initialState = {
   currentMessage: null,
-  allMessage: null,
+  allMessages: null,
   unread: 0,
   loading: true,
   error: null
@@ -11,7 +11,7 @@ const initialState = {
 export const messageReducer = (state = initialState, action) => {
   switch(action.type) {
     case SET_ALL_MESSAGES: 
-      return { ...state, allMessage: action.payload };
+      return { ...state, allMessages: action.payload };
     case SET_UNREAD_COUNT:
       return { ...state, unread: action.payload };
     case SET_CURRENT_MESSAGE: 
