@@ -78,6 +78,7 @@ export const getAllPositives = () => dispatch => {
       }
       
       return dispatch(setMessageDone());
-    });
+    })
+    .catch(positiveError => dispatch(setMessageError(positiveError)))
 };
 
