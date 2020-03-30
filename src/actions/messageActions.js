@@ -41,12 +41,18 @@ export const sendMessage = (message) => dispatch => {
     .catch(messageError => dispatch(setMessageError(messageError)));
 };
 
-export const chooseNextCurrentPositive = positives => dispatch => {
+const initialCurrent = {
+  _id: null
+};
+
+export const chooseNextCurrentPositive = (positives, current = initialCurrent) => dispatch => {
+  console.log(current);
   const unreadPositive = positives.find(positive => !positive.seen);
   if(unreadPositive) {
     dispatch(setCurrentMessage(unreadPositive));
   } else {
     let index = Math.floor(Math.random() * positives.length);
+    while(current._id === positives[index]._id) index = Math.floor(Math.random() * positives.length);
     dispatch(setCurrentMessage(positives[index]));
   }
 };
