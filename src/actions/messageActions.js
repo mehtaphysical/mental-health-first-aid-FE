@@ -46,7 +46,6 @@ const initialCurrent = {
 };
 
 export const chooseNextCurrentPositive = (positives, current = initialCurrent) => dispatch => {
-  console.log(current);
   const unreadPositive = positives.find(positive => !positive.seen);
   if(unreadPositive) {
     dispatch(setCurrentMessage(unreadPositive));
