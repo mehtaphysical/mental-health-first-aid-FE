@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getMessages, updateMessage } from '../services/messageServices';
+import { getAllPositives } from '../actions/messageActions';
 
 export const usePositives = () => {
   const [currentPositive, setCurrentPositive] = useState({ _id: false });
@@ -8,37 +9,37 @@ export const usePositives = () => {
   const [display, setDisplay] = useState(false);
 
   useEffect(() => {
-    getNewCurrentPositive();
+    getAllPositives();
   }, []);
 
-  useEffect(() => {
-    setLoading(false);
-  }, [currentPositive]);
+  // useEffect(() => {
+  //   setLoading(false);
+  // }, [currentPositive]);
 
   const getNewCurrentPositive = () => {
-    setLoading(true);
-    getMessages()
-      .then(positives => {
-        if(positives[0]) {
-          const countUnread = positives.reduce((acc, positive) => {
-            if(!positive.seen) acc = acc + 1;
-            return acc;
-          }, 0);
-          setTotalUnread(countUnread);
-          const unreadPositive = positives.find(positive => !positive.seen);
-          if(unreadPositive) {
-            setCurrentPositive(unreadPositive);
-            updateMessage(unreadPositive._id, { seen: true });
-          } else {
-            let index = Math.floor(Math.random() * positives.length);
-            while(currentPositive._id === positives[index]._id && positives.length > 1) {
-              console.log('in while');
-              index = Math.floor(Math.random() * positives.length);
-            }
-            setCurrentPositive(positives[index]);
-          }
-        }
-      });
+    // getAllPositives();
+    // setLoading(true);
+    // getMessages()
+    //   .then(positives => {
+    //     if(positives[0]) {
+    //       const countUnread = positives.reduce((acc, positive) => {
+    //         if(!positive.seen) acc = acc + 1;
+    //         return acc;
+    //       }, 0);
+    //       setTotalUnread(countUnread);
+    //       const unreadPositive = positives.find(positive => !positive.seen);
+    //       if(unreadPositive) {
+    //         setCurrentPositive(unreadPositive);
+    //         updateMessage(unreadPositive._id, { seen: true });
+    //       } else {
+    //         let index = Math.floor(Math.random() * positives.length);
+    //         while(currentPositive._id === positives[index]._id && positives.length > 1) {
+    //           index = Math.floor(Math.random() * positives.length);
+    //         }
+    //         setCurrentPositive(positives[index]);
+    //       }
+    //     }
+    //   });
   };
 
   return { currentPositive, totalUnread, display, setDisplay, getNewCurrentPositive, loading };

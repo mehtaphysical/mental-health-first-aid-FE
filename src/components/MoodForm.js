@@ -4,7 +4,7 @@ import { Solution } from './Solution';
 
 
 export const MoodForm = () => {
-  const { success, handleSubmit, moodName, setMoodName, solutions, setSolutions } = useMoodForm();
+  const { success, handleSubmit, moodName, setMoodName, solutions, setSolutions, handleKeyPress, handleAdd } = useMoodForm();
 
   const renderSolutions = solutions.map((solution, index) => (
     <li key={index}>
@@ -27,14 +27,10 @@ export const MoodForm = () => {
         </label>
         <br/>
         <p>What helps me is:</p>
-        <ul onKeyPress={(event) => {
-          if(event.key === 'Enter') setSolutions([...solutions, 'new']);
-        }}>
+        <ul onKeyPress={(event) => handleKeyPress(event)}>
           {renderSolutions}
         </ul>
-        <button onClick={() => {
-          setSolutions([...solutions, 'new']);
-        }}>Add</button>
+        <button onClick={handleAdd}>Add</button>
         <button onClick={handleSubmit}>Submit</button>
       </div>
     </section>

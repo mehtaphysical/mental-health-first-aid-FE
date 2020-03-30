@@ -8,6 +8,8 @@ export const useNewUser = () => {
   const [index, setIndex] = useState(0);
   const history = useHistory();
 
+  const friendCode = new URLSearchParams(location.search).get('friendcode');
+
   const slides = [
     {
       title: 'Hello!',
@@ -31,8 +33,11 @@ export const useNewUser = () => {
       component: (<EventForm key={0} />)
     },
     {
-      text: 'What is one thing you like about your self?',
+      text: 'What is something you like about your self?',
       component: <MessageForm key={1} />
+    },
+    {
+      text: `You can also have those close in your life send you positive messages. Just share this link: localhost:7890/message?friendcode=${friendCode}. These messages can be sent anonymously, so please share it only with those you trust to say nice things about you`,
     },
     {
       text: 'You are all done!',

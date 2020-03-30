@@ -17,7 +17,7 @@ export const EventForm = () => {
         </label>
 
         <label>Date: 
-          <input type="date" 
+          <input type="date"
             value={date} 
             onChange={({ target }) => setDate(target.value)} />
         </label>

@@ -7,6 +7,14 @@ export const useMoodForm = () => {
   const [success, setSuccess] = useState(false);
   const [moodName, setMoodName] = useState('');
   const [solutions, setSolutions] = useState(['new']);
+
+  const handleKeyPress = (event) => {
+    if(!solutions.includes('new') && event.key === 'Enter') setSolutions([...solutions, 'new']);
+  };
+
+  const handleAdd = () => {
+    if(!solutions.includes('new')) setSolutions([...solutions, 'new']);
+  };
   
   const handleSubmit = () => {
     let solutionsBlanksRemoved = solutions;
@@ -28,5 +36,5 @@ export const useMoodForm = () => {
       });
   };
 
-  return { success, handleSubmit, moodName, setMoodName, solutions, setSolutions };
+  return { success, handleSubmit, moodName, setMoodName, solutions, setSolutions, handleKeyPress, handleAdd };
 };

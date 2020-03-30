@@ -15,7 +15,6 @@ export const useEventForm = (exsistingTitle = '', exsistingDate = '') => {
     return dispatch(updateUser({ event }))
       .then(res => {
         if(res.type === SET_SESSION_ERROR) throw new Error(res.payload.message);
-        else setSuccess(true);
       });
   };
 
