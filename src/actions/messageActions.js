@@ -45,11 +45,17 @@ export const chooseNextCurrentPositive = positives => dispatch => {
   const unreadPositive = positives.find(positive => !positive.seen);
   if(unreadPositive) {
     dispatch(setCurrentMessage(unreadPositive));
-    dispatch(() => updateMessage(unreadPositive._id, { seen: true }));
   } else {
     let index = Math.floor(Math.random() * positives.length);
     dispatch(setCurrentMessage(positives[index]));
   }
+};
+
+export const updateCurrentPositive = (id, body) => dispatch => {
+  return updateMessage(id, body)
+    .then(() => {
+      dispatch(getAllPositives());
+    });
 };
 
 export const getAllPositives = () => dispatch => {
@@ -62,7 +68,6 @@ export const getAllPositives = () => dispatch => {
           if(!positive.seen) acc = acc + 1;
           return acc;
         }, 0);
-        console.log(countUnread);
         dispatch(setUnread(countUnread));
         dispatch(chooseNextCurrentPositive(positives));
       }
