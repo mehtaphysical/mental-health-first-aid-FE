@@ -25,8 +25,8 @@ export const useMessageForm = () => {
           throw new Error(res.payload.message);
         } else {
           setMessage('');
-          setFriendCode('');
-          setAuthor('');
+          setFriendCode(friendCodeFromURL ? friendCodeFromURL : '');
+          setAuthor(usernameFromURL ? usernameFromURL : '');
           setSuccess(true);
         }
       });
