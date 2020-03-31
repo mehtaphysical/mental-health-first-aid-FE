@@ -11,7 +11,10 @@ export const setMoodLoading = () => ({ type: SET_MOOD_LOADING });
 
 export const setMoodDone = () => ({ type: SET_MOOD_DONE });
 
-export const setMoodUpdated = () => ({ type: SET_MOOD_UPDATED });
+export const moodsNeedToBeUpdate = (boolean) => ({ 
+  type: SET_MOOD_UPDATED, 
+  payload: boolean 
+});
 
 export const setAllMoods = moods => ({ 
   type: SET_ALL_MOODS,
@@ -32,7 +35,7 @@ export const sendMood = (mood) => dispatch => {
   dispatch(setMoodLoading());
   return postMood(mood)
     .then(() => {
-      dispatch(setMoodUpdated());
+      dispatch(moodsNeedToBeUpdate(true));
       return dispatch(setMoodDone());
     })
     .catch(moodError => dispatch(setMoodError(moodError)));
@@ -43,6 +46,7 @@ export const getAllMoods = () => dispatch => {
   return getMoods()
     .then(moods => {
       dispatch(setAllMoods(moods));
+      dispatch(moodsNeedToBeUpdate(false));
       return dispatch(setMoodDone());
     })
     .catch(moodError => dispatch(setMoodError(moodError)));
@@ -51,6 +55,10 @@ export const getAllMoods = () => dispatch => {
 export const deleteMoodAction = id => dispatch => {
   dispatch(setMoodLoading());
   return deleteMood(id)
-    .then(() => dispatch(setMoodDone()))
+    .then(() => {
+      dispatch(setCurrentMood(null));
+      dispatch(moodsNeedToBeUpdate(true));
+      dispatch(setMoodDone());
+    })
     .catch(moodError => dispatch(setMoodError(moodError)));
 };

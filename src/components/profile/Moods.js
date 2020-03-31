@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toGetMoods } from '../../selectors/useSelectors';
-import { getAllMoods, setCurrentMood, deleteMoodAction } from '../../actions/moodActions';
+import { getAllMoods, setCurrentMood, deleteMoodAction, moodsNeedToBeUpdate } from '../../actions/moodActions';
 import { MoodForm } from '../MoodForm';
 
 export const Moods = () => {
@@ -11,11 +11,11 @@ export const Moods = () => {
   const [selected, setSelected] = useState('default');
 
   useEffect(() => {
-    dispatch(getAllMoods());
+    if(updated) dispatch(getAllMoods());
   }, [updated]);
 
   useEffect(() => {
-    const foundMood = allMoods.find(({ moodName }) => moodName === selected);
+    const foundMood = allMoods.find(({ _id }) => _id === selected);
     dispatch(setCurrentMood(foundMood));
   }, [selected]);
 
@@ -24,14 +24,13 @@ export const Moods = () => {
   }
 
   const handleDelete = () => {
-    console.log('Deleting');
     const areYouSure = confirm(`Are you sure you want to delete ${currentMood.moodName}?`);
     if(areYouSure) {
       dispatch(deleteMoodAction(currentMood._id));
     }
   };
 
-  const moodNameOptions = allMoods.map(({ moodName, _id }) => (<option key={_id} value={moodName}>{moodName}</option>));
+  const moodNameOptions = allMoods.map(({ moodName, _id }) => (<option key={_id} value={_id}>{moodName}</option>));
 
   const solutionsList = currentMood ? (
     <div>
