@@ -8,29 +8,25 @@ export const Event = () => {
 
   const formattedDate = dateInput.slice(0, 10);
 
-  return !showEventForm ? (
-    <>
-      <p>You are looking forward to
-        <br/><span>{event.title}</span>
-        <br/>on {date}</p>
-      <button onClick={() => {
-        setShowEventForm(!showEventForm);
-      }
-      }>Edit</button>
-    </>
-  ) : (
-    <>
-      <p>You are looking forward to
-        <br/>
-        <input required
-          type="text"
-          value={titleInput} 
-          onChange={({ target }) => setTitle(target.value)} />
-        <br/>on 
-        <input type="date" 
-          value={formattedDate} 
-          onChange={({ target }) => setDate(target.value)} /></p>
-      <button onClick={handleSubmit}>Update</button>
-      <button onClick={() => setShowEventForm(!showEventForm)}>Cancel</button>
-    </>);
+  return (
+    <section>
+      <h3>Looking Forward</h3>
+      <p>You are looking forward to</p>
+      <p>{!showEventForm ? event.title : (<input required
+        type="text"
+        value={titleInput} 
+        onChange={({ target }) => setTitle(target.value)} />)}</p>
+      <p>on {!showEventForm ? date : <input type="date" 
+        value={formattedDate} 
+        onChange={({ target }) => setDate(target.value)} />}</p>
+      {!showEventForm ? (
+        <div><button onClick={() => setShowEventForm(!showEventForm)}>Edit</button></div>
+      ) : (
+        <div>
+          <button onClick={handleSubmit}>Update</button>
+          <button onClick={() => setShowEventForm(!showEventForm)}>Cancel</button>
+        </div>
+      )}
+    </section>
+  );
 };

@@ -22,8 +22,8 @@ export const Profile = () => {
       <Event />
       <Moods />
       <Positives />
-      {renderOptions}
-      <Option />
+      {/* {renderOptions}
+      <Option /> */}
     </section>
   );
 };
