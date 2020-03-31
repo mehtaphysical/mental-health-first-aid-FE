@@ -38,8 +38,8 @@ export const MoodForm = ({ importMoodName, importSolutions }) => {
         <p>What helps me is:</p>
         <ul onKeyPress={(event) => handleKeyPress(event)}>
           {renderSolutions}
+          <li><button onClick={handleAdd}>Add</button></li>
         </ul>
-        <button onClick={handleAdd}>Add</button>
         <button onClick={handleSubmit}>Submit</button>
       </div>
     </section>

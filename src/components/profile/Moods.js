@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toGetMoods } from '../../selectors/useSelectors';
-import { getAllMoods, setCurrentMood, deleteMoodAction, moodsNeedToBeUpdate } from '../../actions/moodActions';
+import { getAllMoods, setCurrentMood, deleteMoodAction } from '../../actions/moodActions';
 import { MoodForm } from '../MoodForm';
 
 export const Moods = () => {
@@ -21,7 +21,7 @@ export const Moods = () => {
   }, [selected]);
 
   const handleEdit = () => {
-    setEditing(true);
+    setEditing(!editing);
   };
 
   const handleDelete = () => {
@@ -51,8 +51,12 @@ export const Moods = () => {
   return (
     <section>
       <h3>Currently Feeling</h3>
-
-      {editing ? (<MoodForm importMoodName={currentMood.moodName} importSolutions={currentMood.solutions}/>) : (
+      {editing ? (
+        <div>
+          <MoodForm importMoodName={currentMood.moodName} importSolutions={currentMood.solutions}/>
+          <button onClick={handleEdit}>Cancel</button>
+        </div>
+      ) : (
         <div>
           <select 
             value={selected} 
@@ -65,7 +69,6 @@ export const Moods = () => {
           {selected === 'add' ? (<MoodForm />) : (<></>)}
         </div>
       )}
-
     </section>
   );
 };

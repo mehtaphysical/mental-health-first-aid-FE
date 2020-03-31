@@ -1,36 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useEventForm } from '../../hooks/useEventForm';
 import { useEvent } from '../../hooks/useEvent';
 
-const placeHolder = {
-  title: 'PLACEHOLDER',
-  date: '2020-04-04T00:00:00.000+00:00'
-};
-
 export const Event = () => {
   const  { event, date, showEventForm, setShowEventForm } = useEvent();
-  const { title: titleInput, setTitle, date: dateInput, setDate, handleSubmit } = useEventForm(placeHolder.title, placeHolder.date);
+  const { title: titleInput, setTitle, date: dateInput, setDate, handleSubmit } = useEventForm();
+  const [formattedDate, setFormattedDate] = useState();
 
-  const formattedDate = dateInput.slice(0, 10);
+  useEffect(() => {
+    setFormattedDate(dateInput.slice(0, 10));
+  }, [dateInput]);
 
   return (
     <section>
       <h3>Looking Forward</h3>
       <p>You are looking forward to</p>
-      <p>{!showEventForm ? event.title : (<input required
+      <p>{showEventForm || !event ? (<input required
         type="text"
         value={titleInput} 
-        onChange={({ target }) => setTitle(target.value)} />)}</p>
-      <p>on {!showEventForm ? date : <input type="date" 
+        onChange={({ target }) => setTitle(target.value)} />) : event.title}</p>
+      <p>on {showEventForm || !event ? <input type="date" 
         value={formattedDate} 
-        onChange={({ target }) => setDate(target.value)} />}</p>
-      {!showEventForm ? (
-        <div><button onClick={() => setShowEventForm(!showEventForm)}>Edit</button></div>
-      ) : (
+        onChange={({ target }) => setDate(target.value)} /> : date }</p>
+      {showEventForm || !event ? (
         <div>
-          <button onClick={handleSubmit}>Update</button>
+          <button onClick={() => {
+            handleSubmit();
+            setShowEventForm(!showEventForm);
+          }}>Update</button>
           <button onClick={() => setShowEventForm(!showEventForm)}>Cancel</button>
         </div>
+      ) : (
+        <div><button onClick={() => setShowEventForm(!showEventForm)}>Edit</button></div>
       )}
     </section>
   );

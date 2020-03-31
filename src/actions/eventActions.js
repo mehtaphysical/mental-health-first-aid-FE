@@ -26,7 +26,7 @@ export const fetchPostEvent = event => dispatch => {
       dispatch(setEvent(event));
       return dispatch(setEventDone());
     })
-    .catch(eventError => dispatch(setEventError(eventError)))
+    .catch(eventError => dispatch(setEventError(eventError)));
 };
 
 export const fetchGetEvent = () => dispatch => {

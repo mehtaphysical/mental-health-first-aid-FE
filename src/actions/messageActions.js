@@ -58,14 +58,11 @@ export const chooseNextCurrentPositive = (positives, current = initialCurrent) =
 
 export const updateCurrentPositive = (id, body) => dispatch => {
   return updateMessage(id, body)
-    .then(() => {
-      console.log('In the THEN of updateCurrentPositive');
-      dispatch(getAllPositives());
-    });
+    .then(() => dispatch(getAllPositives()))
+    .catch(positiveError => setMessageError(positiveError));
 };
 
 export const getAllPositives = () => dispatch => {
-  console.log('ran getAllPositives');
   dispatch(setMessageLoading());
   return getMessages()
     .then(positives => {
