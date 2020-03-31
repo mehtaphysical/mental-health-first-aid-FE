@@ -13,12 +13,14 @@ export const Positives = () => {
   const { currentMessage, unread, loading, allMessages } = useSelector(toGetPositives);
 
   useEffect(() => {
+    console.log('Use Effect ran');
     dispatch(getAllPositives());
   }, []);
 
   const handleGetNext = () => {
+    console.log('Boop!', Math.random());
     if(!currentMessage.seen) dispatch(updateCurrentPositive(currentMessage._id, { seen: true }));
-    else dispatch(chooseNextCurrentPositive(allMessages, currentMessage));
+    else if(allMessages.length > 1) dispatch(chooseNextCurrentPositive(allMessages, currentMessage));
   };
 
   const render = currentMessage ? (

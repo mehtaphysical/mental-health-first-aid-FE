@@ -2,9 +2,14 @@ import React from 'react';
 import { useEventForm } from '../../hooks/useEventForm';
 import { useEvent } from '../../hooks/useEvent';
 
+const placeHolder = {
+  title: 'PLACEHOLDER',
+  date: '2020-04-04T00:00:00.000+00:00'
+};
+
 export const Event = () => {
   const  { event, date, showEventForm, setShowEventForm } = useEvent();
-  const { title: titleInput, setTitle, date: dateInput, setDate, handleSubmit } = useEventForm(event.title, event.date);
+  const { title: titleInput, setTitle, date: dateInput, setDate, handleSubmit } = useEventForm(placeHolder.title, placeHolder.date);
 
   const formattedDate = dateInput.slice(0, 10);
 
