@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-export const Solution = ({ solutions, setSolutions, index }) => {
-  const [solution, setSolution] = useState('');
+export const Solution = ({ intialSolution, solutions, setSolutions, index }) => {
+  const [solution, setSolution] = useState(intialSolution === 'new' ? '' : intialSolution);
 
   const handleChange = (value) => {
     const editedSolutions = solutions;
@@ -22,6 +22,7 @@ export const Solution = ({ solutions, setSolutions, index }) => {
 };
 
 Solution.propTypes = {
+  intialSolution: PropTypes.string.isRequired,
   solutions: PropTypes.array.isRequired,
   setSolutions: PropTypes.func.isRequired,
   index: PropTypes.number.isRequired

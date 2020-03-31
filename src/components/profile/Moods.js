@@ -9,6 +9,7 @@ export const Moods = () => {
   const { allMoods, currentMood, updated } = useSelector(toGetMoods);
 
   const [selected, setSelected] = useState('default');
+  const [editing, setEditing] = useState(false);
 
   useEffect(() => {
     if(updated) dispatch(getAllMoods());
@@ -20,8 +21,8 @@ export const Moods = () => {
   }, [selected]);
 
   const handleEdit = () => {
-    console.log('Editing!');
-  }
+    setEditing(true);
+  };
 
   const handleDelete = () => {
     const areYouSure = confirm(`Are you sure you want to delete ${currentMood.moodName}?`);
@@ -45,20 +46,25 @@ export const Moods = () => {
   ) : (
     <></>
   );
-  
 
   return (
     <section>
       <h3>Currently Feeling</h3>
-      <select 
-        value={selected} 
-        onChange={({ target }) => setSelected(target.value)}>
-        <option value="defualt">Select a Mood</option>
-        {moodNameOptions}
-        <option value="add">Add +</option>
-      </select>
-      {solutionsList}
-      {selected === 'add' ? (<MoodForm />) : (<></>)}
+
+      {editing ? (<MoodForm importMoodName={currentMood.moodName} importSolutions={currentMood.solutions}/>) : (
+        <div>
+          <select 
+            value={selected} 
+            onChange={({ target }) => setSelected(target.value)}>
+            <option value="defualt">Select a Mood</option>
+            {moodNameOptions}
+            <option value="add">Add +</option>
+          </select>
+          {solutionsList}
+          {selected === 'add' ? (<MoodForm />) : (<></>)}
+        </div>
+      )}
+
     </section>
   );
 };

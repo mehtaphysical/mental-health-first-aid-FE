@@ -1,14 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useMoodForm } from '../hooks/useMoodForm';
 import { Solution } from './Solution';
 
-
-export const MoodForm = () => {
-  const { success, handleSubmit, moodName, setMoodName, solutions, setSolutions, handleKeyPress, handleAdd } = useMoodForm();
+export const MoodForm = ({ importMoodName, importSolutions }) => {
+  const { success, 
+    handleSubmit, 
+    moodName, 
+    setMoodName, 
+    solutions, 
+    setSolutions, 
+    handleKeyPress, 
+    handleAdd } = useMoodForm({ 
+    moodName: importMoodName, 
+    solutions: importSolutions });
 
   const renderSolutions = solutions.map((solution, index) => (
     <li key={index}>
-      <Solution setSolutions={setSolutions} solutions={solutions} index={index} />
+      <Solution setSolutions={setSolutions} intialSolution={solution} solutions={solutions} index={index} />
     </li>
   ));
 
@@ -35,4 +44,9 @@ export const MoodForm = () => {
       </div>
     </section>
   );
+};
+
+MoodForm.propTypes = {
+  importMoodName: PropTypes.string,
+  importSolutions: PropTypes.array
 };
