@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux';
-import { toGetAuth } from '../selectors/useSelectors';
+import { toGetEvent } from '../selectors/useSelectors';
 import { useState, useEffect } from 'react';
 
 export const useEvent = () => {
-  const { user: { event } } = useSelector(toGetAuth);
+  const { event } = useSelector(toGetEvent);
   const [date, setDate] = useState();
   const [showEventForm, setShowEventForm] = useState(false);
   const monthArray = ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];

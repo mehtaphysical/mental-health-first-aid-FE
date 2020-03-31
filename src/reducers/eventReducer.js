@@ -1,4 +1,4 @@
-import { SET_EVENT, SET_EVENT_ERROR, SET_EVENT_LOADING, SET_EVENT_DONE } from '../actions/moodActions';
+import { SET_EVENT, SET_EVENT_ERROR, SET_EVENT_LOADING, SET_EVENT_DONE } from '../actions/eventActions';
 
 const initialState = {
   event: null,

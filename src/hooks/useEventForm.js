@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { updateUser, SET_SESSION_ERROR } from '../actions/authActions';
+import { fetchPatchEvent, SET_EVENT_ERROR } from '../actions/eventActions';
 
 export const useEventForm = (exsistingTitle = '', exsistingDate = '') => {
   const dispatch = useDispatch();
@@ -10,11 +10,13 @@ export const useEventForm = (exsistingTitle = '', exsistingDate = '') => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    //This was a hack to get date to be correct in PST
+    //need to find another way...
     const event = { title, date: date.replace('T00', 'T12') };
 
-    return dispatch(updateUser({ event }))
+    return dispatch(fetchPatchEvent(event))
       .then(res => {
-        if(res.type === SET_SESSION_ERROR) throw new Error(res.payload.message);
+        if(res.type === SET_EVENT_ERROR) throw new Error(res.payload.message);
       });
   };
 
