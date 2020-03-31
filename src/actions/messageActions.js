@@ -1,4 +1,4 @@
-import { postMessage, getMessages, updateMessage } from '../services/messageServices';
+import { postMessage, getMessages, updateMessage, deletePositive } from '../services/messageServices';
 
 export const SET_MESSAGE_LOADING = 'SET_MESSAGE_LOADING';
 export const SET_MESSAGE_DONE = 'SET_MESSAGE_DONE';
@@ -78,6 +78,16 @@ export const getAllPositives = () => dispatch => {
       
       return dispatch(setMessageDone());
     })
-    .catch(positiveError => dispatch(setMessageError(positiveError)))
+    .catch(positiveError => dispatch(setMessageError(positiveError)));
 };
+
+export const fetchDeletePositive = (id) => dispatch => {
+  dispatch(setMessageLoading());
+  return deletePositive(id)
+    .then(() => dispatch(setCurrentMessage()))
+    .then(() => dispatch(getAllPositives()))
+    .then(() => dispatch(setMessageDone()))
+    .catch(positiveError => dispatch(setMessageError(positiveError)));
+};
+
 

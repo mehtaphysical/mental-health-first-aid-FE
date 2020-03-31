@@ -1,27 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Positive } from './Positive';
 import { useHistory } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { toGetAuth, toGetPositives } from '../../selectors/useSelectors';
-import { getAllPositives, chooseNextCurrentPositive, updateCurrentPositive } from '../../actions/messageActions';
+import { usePositives } from '../../hooks/usePositives';
 
 export const Positives = () => {
   const history = useHistory();
-  const dispatch = useDispatch();
 
   const { user: { friendCode } } = useSelector(toGetAuth);
-  const { currentMessage, unread, loading, allMessages } = useSelector(toGetPositives);
-  const [link, setLink] = useState();
 
-  useEffect(() => {
-    dispatch(getAllPositives());
-  }, []);
-
-  const handleGetNext = () => {
-    if(!currentMessage.seen) dispatch(updateCurrentPositive(currentMessage._id, { seen: true }));
-    else if(allMessages.length > 1) dispatch(chooseNextCurrentPositive(allMessages, currentMessage));
-    else setLink(`localhost:7890/message?friendcode=${friendCode}`);
-  };
+  const { link, setLink, handleGetNext, handleDelete, currentMessage, unread, loading, allMessages } = usePositives();
 
   const render = currentMessage ? (
     <Positive key={currentMessage._id} message={currentMessage.message} author={currentMessage.author} seen={currentMessage.seen} />
@@ -37,8 +26,14 @@ export const Positives = () => {
         {!loading && render}
         <button onClick={handleGetNext}>Get Another</button>
         <button onClick={() => history.push(`/message?friendcode=${friendCode}`)}>Create New</button>
+        <button onClick={handleDelete}>Delete</button>
       </div>
-      {link ? (<p>Looks like you one stored. Either add more yourself by clicking &quot;Create New&quot; above, or share this link: {link}</p>) : (<></>)}
+      {link || allMessages < 1 ? (
+        <div>
+          <p>Click &quot;Create New&quot;, or share this link: localhost:7890/message?friendcode={friendCode}</p>
+          <button onClick={() => setLink(!link)}>Okay</button>
+        </div>
+      ) : (<></>)}
     </section>
   );
 };

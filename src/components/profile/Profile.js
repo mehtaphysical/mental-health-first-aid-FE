@@ -21,8 +21,8 @@ export const Profile = () => {
       <h2>Welcome back {userName}</h2>
       <h3>Friend Code: {friendCode}</h3>
       <Avatar avatar={avatar} />
-      <Event />
-      <Moods />
+      {/* <Event />
+      <Moods /> */}
       <Positives />
       {/* {renderOptions}
       <Option /> */}
