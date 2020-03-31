@@ -35,6 +35,7 @@ export const Moods = () => {
 
   const solutionsList = currentMood ? (
     <div>
+      <h4>You might try to:</h4>
       <ul>
         {currentMood.solutions.map(solution => (
           <li key={solution}>{solution}</li>

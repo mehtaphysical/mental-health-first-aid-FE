@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { sendMood, SET_MOOD_ERROR } from '../actions/moodActions';
 
@@ -7,8 +7,6 @@ export const useMoodForm = (state) => {
   const [success, setSuccess] = useState(false);
   const [moodName, setMoodName] = useState(state.moodName ? state.moodName : '');
   const [solutions, setSolutions] = useState(state.solutions ? state.solutions : ['new']);
-
-  console.log(state);
 
   const handleKeyPress = (event) => {
     if(!solutions.includes('new') && event.key === 'Enter') setSolutions([...solutions, 'new']);

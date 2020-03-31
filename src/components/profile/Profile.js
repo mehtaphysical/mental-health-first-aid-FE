@@ -7,6 +7,8 @@ import { Option } from './Option';
 import { Positives } from './Positives';
 import { Moods } from './Moods';
 
+import styles from './Profile.css';
+
 export const Profile = () => {
   const { user: { userName, collections, avatar, friendCode } } = useSelector(toGetAuth);
 
@@ -15,7 +17,7 @@ export const Profile = () => {
   }) : (<></>);
 
   return (
-    <section>
+    <main>
       <h2>Welcome back {userName}</h2>
       <h3>Friend Code: {friendCode}</h3>
       <Avatar avatar={avatar} />
@@ -24,6 +26,6 @@ export const Profile = () => {
       <Positives />
       {/* {renderOptions}
       <Option /> */}
-    </section>
+    </main>
   );
 };

@@ -22,7 +22,7 @@ export const Avatar = ({ avatar }) => {
   );
 
   const renderAvatar = avatar ? (
-    <img style={{ width: '200px' }} onClick={() => setDisplay(true)} src={avatar} />
+    <img style={{ width: '200px' }} onClick={() => setDisplay(!display)} src={avatar} />
   ) : (
     <div>
       <h5 onClick={() => setDisplay(true)}>+ Set avatar</h5>
@@ -30,10 +30,10 @@ export const Avatar = ({ avatar }) => {
   );
   
   return (
-    <div>
+    <section>
       {renderAvatar}
       {renderForm}
-    </div>
+    </section>
   );
 };
 
