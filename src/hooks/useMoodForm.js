@@ -32,6 +32,9 @@ export const useMoodForm = () => {
           setSuccess(true);
           setMoodName('');
           setSolutions(['new']);
+          setTimeout(() => {
+            setSuccess(false);
+          }, 2000);
         }
       });
   };
