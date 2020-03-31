@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Positive } from './Positive';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -11,16 +11,16 @@ export const Positives = () => {
 
   const { user: { friendCode } } = useSelector(toGetAuth);
   const { currentMessage, unread, loading, allMessages } = useSelector(toGetPositives);
+  const [link, setLink] = useState();
 
   useEffect(() => {
-    console.log('Use Effect ran');
     dispatch(getAllPositives());
   }, []);
 
   const handleGetNext = () => {
-    console.log('Boop!', Math.random());
     if(!currentMessage.seen) dispatch(updateCurrentPositive(currentMessage._id, { seen: true }));
     else if(allMessages.length > 1) dispatch(chooseNextCurrentPositive(allMessages, currentMessage));
+    else setLink(`localhost:7890/message?friendcode=${friendCode}`);
   };
 
   const render = currentMessage ? (
@@ -38,6 +38,7 @@ export const Positives = () => {
         <button onClick={handleGetNext}>Get Another</button>
         <button onClick={() => history.push(`/message?friendcode=${friendCode}`)}>Create New</button>
       </div>
+      {link ? (<p>Looks like you one stored. Either add more yourself by clicking &quot;Create New&quot; above, or share this link: {link}</p>) : (<></>)}
     </section>
   );
 };
