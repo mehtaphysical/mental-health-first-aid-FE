@@ -7,7 +7,7 @@ export const Header = () => {
       <h1>Mental Health First Aid Kit</h1>
       <NavLink to='/profile'>Profile</NavLink>
       <br/>
-      <NavLink to='/message'>Send Message</NavLink>
+      <NavLink to='/positive'>Send Positive</NavLink>
     </section>
   );
 };

@@ -12,7 +12,7 @@ import { Footer } from './Footer';
 import { PrivateRoute } from './authComponents/PrivateRoute';
 import { NewUser } from './NewUser';
 import { Profile } from './profile/Profile';
-import { MessageForm } from './MessageForm';
+import { PositiveForm } from './PositiveForm';
 import { Breathing } from './Breathing';
 import { MoodForm } from './MoodForm';
 
@@ -23,7 +23,7 @@ export default function App() {
       <Switch>
         <Route exact path='/' component={LandingPage} />
         <Route exact path='/auth' component={AuthPage} />
-        <Route path='/message' component={MessageForm} />
+        <Route path='/positive' component={PositiveForm} />
         <PrivateRoute path='/newuser' component={NewUser} />
         <PrivateRoute exact path='/profile' component={Profile} />
         <Route path='/breathing' component={Breathing} />

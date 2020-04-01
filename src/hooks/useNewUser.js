@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { EventForm } from '../components/EventForm';
-import { MessageForm } from '../components/MessageForm';
+import { PositiveForm } from '../components/PositiveForm';
 import { useHistory } from 'react-router-dom';
 
 export const useNewUser = () => {
@@ -34,10 +34,10 @@ export const useNewUser = () => {
     },
     {
       text: 'What is something you like about your self?',
-      component: <MessageForm key={1} />
+      component: <PositiveForm key={1} />
     },
     {
-      text: `You can also have those close in your life send you positive messages. Just share this link: localhost:7890/message?friendcode=${friendCode}. These messages can be sent anonymously, so please share it only with those you trust to say nice things about you`,
+      text: `You can also have those close in your life send you positive messages. Just share this link: localhost:7890/positive?friendcode=${friendCode}. These messages can be sent anonymously, so please share it only with those you trust to say nice things about you`,
     },
     {
       text: 'You are all done!',

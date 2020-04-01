@@ -1,8 +1,8 @@
 import React from 'react';
-import { useMessageForm } from '../hooks/useMessageForm';
+import { usePositiveForm } from '../hooks/usePositiveForm';
 
-export const MessageForm = () => {
-  const { message, setMessage, friendCode, setFriendCode, author, setAuthor, success, setSuccess, handleSubmit, friendCodeFromURL, usernameFromURL } = useMessageForm();
+export const PositiveForm = () => {
+  const { message, setMessage, friendCode, setFriendCode, author, setAuthor, success, setSuccess, handleSubmit, friendCodeFromURL, usernameFromURL } = usePositiveForm();
 
   return success ? (
     <section>
@@ -31,7 +31,7 @@ export const MessageForm = () => {
             onChange={({ target }) => setAuthor(target.value)} />
         </label>) : (<></>)}
 
-        <button>Send Message</button>
+        <button>Send</button>
       </form>
     </section>
   );

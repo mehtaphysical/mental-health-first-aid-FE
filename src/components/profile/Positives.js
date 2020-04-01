@@ -2,7 +2,7 @@ import React from 'react';
 import { Positive } from './Positive';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { toGetAuth, toGetPositives } from '../../selectors/useSelectors';
+import { toGetAuth } from '../../selectors/useSelectors';
 import { usePositives } from '../../hooks/usePositives';
 
 export const Positives = () => {
@@ -10,10 +10,10 @@ export const Positives = () => {
 
   const { user: { friendCode } } = useSelector(toGetAuth);
 
-  const { link, setLink, handleGetNext, handleDelete, currentMessage, unread, loading, allMessages } = usePositives();
+  const { link, setLink, handleGetNext, handleDelete, currentPositive, unread, loading, allPositives } = usePositives();
 
-  const render = currentMessage ? (
-    <Positive key={currentMessage._id} message={currentMessage.message} author={currentMessage.author} seen={currentMessage.seen} />
+  const render = currentPositive ? (
+    <Positive key={currentPositive._id} message={currentPositive.message} author={currentPositive.author} seen={currentPositive.seen} />
   ) : (
     <></>
   );
@@ -25,12 +25,12 @@ export const Positives = () => {
       <div>
         {!loading && render}
         <button onClick={handleGetNext}>Get Another</button>
-        <button onClick={() => history.push(`/message?friendcode=${friendCode}`)}>Create New</button>
+        <button onClick={() => history.push(`/positive?friendcode=${friendCode}`)}>Create New</button>
         <button onClick={handleDelete}>Delete</button>
       </div>
-      {link || allMessages < 1 ? (
+      {link || allPositives < 1 ? (
         <div>
-          <p>Click &quot;Create New&quot;, or share this link: localhost:7890/message?friendcode={friendCode}</p>
+          <p>Click &quot;Create New&quot;, or share this link: localhost:7890/positive?friendcode={friendCode}</p>
           <button onClick={() => setLink(!link)}>Okay</button>
         </div>
       ) : (<></>)}

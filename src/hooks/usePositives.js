@@ -1,29 +1,29 @@
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllPositives, updateCurrentPositive, chooseNextCurrentPositive, fetchDeletePositive } from "../actions/messageActions";
-import { toGetPositives } from "../selectors/useSelectors";
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchGetAllPositives, fetchPatchPositive, chooseNextCurrentPositive, fetchDeletePositive } from '../actions/positiveActions';
+import { toGetPositives } from '../selectors/useSelectors';
 
 export const usePositives = () => {
   const dispatch = useDispatch();
-  const { currentMessage, unread, loading, allMessages } = useSelector(toGetPositives);
+  const { currentPositive, unread, loading, allPositives } = useSelector(toGetPositives);
   const [link, setLink] = useState();
 
   useEffect(() => {
-    dispatch(getAllPositives());
+    dispatch(fetchGetAllPositives());
   }, []);
 
   const handleGetNext = () => {
-    if(!currentMessage.seen) dispatch(updateCurrentPositive(currentMessage._id, { seen: true }));
-    else if(allMessages.length > 1) dispatch(chooseNextCurrentPositive(allMessages, currentMessage));
+    if(currentPositive && !currentPositive.seen) dispatch(fetchPatchPositive(currentPositive._id, { seen: true }));
+    else if(allPositives.length > 1) dispatch(chooseNextCurrentPositive(allPositives, currentPositive));
     else setLink(true);
   };
 
   const handleDelete = () => {
-    const areYouSure = confirm(`Are you sure you want to delete ${currentMessage.message} from ${currentMessage.author}?`);
+    const areYouSure = confirm(`Are you sure you want to delete "${currentPositive.message}" from ${currentPositive.author}?`);
     if(areYouSure) {
-      dispatch(fetchDeletePositive(currentMessage._id));
+      dispatch(fetchDeletePositive(currentPositive._id));
     }
   };
 
-  return { link, setLink, handleGetNext, handleDelete, currentMessage, unread, loading, allMessages };
+  return { link, setLink, handleGetNext, handleDelete, currentPositive, unread, loading, allPositives };
 };

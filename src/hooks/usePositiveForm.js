@@ -1,9 +1,9 @@
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { sendMessage, SET_MESSAGE_ERROR } from '../actions/messageActions';
+import { fetchPostPositive, SET_POSITIVE_ERROR } from '../actions/positiveActions';
 import { useLocation } from 'react-router-dom';
 
-export const useMessageForm = () => {
+export const usePositiveForm = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
@@ -19,9 +19,9 @@ export const useMessageForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    return dispatch(sendMessage({ message, friendCode, author }))
+    return dispatch(fetchPostPositive({ message, friendCode, author }))
       .then(res => {
-        if(res.type === SET_MESSAGE_ERROR) {
+        if(res.type === SET_POSITIVE_ERROR) {
           throw new Error(res.payload.message);
         } else {
           setMessage('');
