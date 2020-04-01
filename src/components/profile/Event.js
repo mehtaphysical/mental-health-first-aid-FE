@@ -3,8 +3,8 @@ import { useEventForm } from '../../hooks/useEventForm';
 import { useEvent } from '../../hooks/useEvent';
 
 export const Event = () => {
-  const  { event, date, showEventForm, setShowEventForm } = useEvent();
-  const { title: titleInput, setTitle, date: dateInput, setDate, handleSubmit, success, error } = useEventForm();
+  const  { event, date, showEventForm, setShowEventForm, error } = useEvent();
+  const { title: titleInput, setTitle, date: dateInput, setDate, handleSubmit, success } = useEventForm();
 
   useEffect(() => {
     setShowEventForm(false);
@@ -22,7 +22,7 @@ export const Event = () => {
       <p>on {showEventForm || !event ? <input type="date" 
         value={dateInput} 
         onChange={({ target }) => setDate(target.value.slice(0, 10))} /> : date }</p>
-      {error && showEventForm ? <p>{error}</p> : <></>}
+      {error && showEventForm ? <p>{error.message}</p> : <></>}
 
       {showEventForm || !event ? (
         <div>

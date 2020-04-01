@@ -5,7 +5,7 @@ import { fetchGetEvent } from '../actions/eventActions';
 
 export const useEvent = () => {
   const dispatch = useDispatch();
-  const { event } = useSelector(toGetEvent);
+  const { event, error } = useSelector(toGetEvent);
 
   const [date, setDate] = useState();
   const [showEventForm, setShowEventForm] = useState(false);
@@ -24,5 +24,5 @@ export const useEvent = () => {
     return `${weekday}, ${month} ${day}`;
   };
 
-  return { event, date, showEventForm, setShowEventForm };
+  return { event, date, showEventForm, setShowEventForm, error };
 };
