@@ -20,27 +20,24 @@ export const useNewUser = () => {
   const friendCode = new URLSearchParams(location.search).get('friendcode');
 
   const slides = [
+    { title: 'Hello!' },
     {
-      title: 'Positives',
-      text: 'Or you can send the link below to the people who lift you up, and they can send you a positive message. (They don’t need an account).',
-      component: <CopyLink key={4} link={`localhost:7890/positive?friendcode=${friendCode}`} />
+      title: 'Hello!',
+      text: 'The goal of this app is to give you the tools to be in control of your mental health.'
     },
     {
       title: 'Hello!',
-      text: 'The goal of this app if to give you the tools for you to be in control.'
+      text: 'You should be able to open this app, and find what will help you for wherever your mental health is at the moment.'
     },
     {
       title: 'Hello!',
-      text: 'Ideally you should be able to open this app, and go directly to things that will help you for where ever your mental health is at the moment.'
-    },
-    {
-      title: 'Hello!',
-      text: 'At the moment your mental health first-aid kit is empty,'
+      text: 'You kit is currently empty.'
     },
     {
       title: 'Hello!',
       text: 'Let’s start filling it!'
     },
+    { title: 'Looking Forward' },
     {
       title: 'Looking Forward',
       text: 'Feelings won’t last forever, they come and go in waves.'
@@ -59,13 +56,14 @@ export const useNewUser = () => {
       title: 'Looking Forward',
       text: 'You can update this anytime, whether the event has happened or not.'
     },
+    { title: 'Feelings' },
     {
       title: 'Feelings',
-      text: 'Sometimes strong feelings come on and it’s hard to think clearly about what you might want to do in response..'
+      text: 'Sometimes strong feelings come on and it’s hard to think clearly about what you might want to do in response.'
     },
     {
       title: 'Feelings',
-      text: 'Sometimes there’s we can’t get rid of the feeling, but we can find ways to sit with it or get through it.'
+      text: 'Sometimes we can’t get rid of the feeling, but we can find ways to sit with it or get through it.'
     },
     {
       title: 'Feelings',
@@ -81,6 +79,7 @@ export const useNewUser = () => {
       title: 'Feelings',
       text: 'And you can add as many “Feelings” as you like.'
     },
+    { title: 'Positives' },
     {
       title: 'Positives',
       text: 'There are so many wonderful things about you!'
@@ -105,8 +104,8 @@ export const useNewUser = () => {
       component: <CopyLink key={4} link={`localhost:7890/positive?friendcode=${friendCode}`} />
     },
     {
-      text: 'You are all done!',
-      component: (<p>Congrats!!!</p>)
+      title: 'Congrats!',
+      text: 'You now have a mental health first aid kit!',
     }
   ];
   
