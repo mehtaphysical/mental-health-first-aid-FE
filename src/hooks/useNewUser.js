@@ -3,8 +3,9 @@ import { EventForm } from '../components/EventForm';
 import { MoodForm } from '../components/MoodForm';
 import { PositiveForm } from '../components/PositiveForm';
 import { useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { toGetEvent, toGetPositives, toGetMoods } from '../selectors/useSelectors';
+import { updateUser } from '../actions/authActions';
 
 export const useNewUser = () => {
   const { loading: eventCreated } = useSelector(toGetEvent);
@@ -13,6 +14,9 @@ export const useNewUser = () => {
   const [currentRender, setCurrentRender] = useState((<></>));
   const [index, setIndex] = useState(0);
   const history = useHistory();
+  const dispatch = useDispatch();
+
+  console.log(eventCreated, positiveCreated, moodCreated);
 
   const friendCode = new URLSearchParams(location.search).get('friendcode');
 
@@ -41,7 +45,7 @@ export const useNewUser = () => {
     },
     {
       title: 'Feelings',
-      text: 'What is one thing you are looking forward to?',
+      text: 'What is a feeling you\'ve struggled with, and what are some things you might do in response?',
       component: (<MoodForm key={1} />),
       conditions: moodCreated
     },
@@ -52,6 +56,7 @@ export const useNewUser = () => {
       conditions: positiveCreated
     },
     {
+      title: 'Positives',
       text: `You can also have those close in your life send you positive messages. Just share this link: localhost:7890/positive?friendcode=${friendCode}. These messages can be sent anonymously, so please share it only with those you trust to say nice things about you`,
     },
     {
@@ -70,6 +75,7 @@ export const useNewUser = () => {
   }, [index]);
 
   const handleNext = () => {
+    if(index === slides.length - 1) dispatch(updateUser({ newUser: false }));
     if(index < slides.length - 1) setIndex(index + 1);
     else history.push('./profile');
   };

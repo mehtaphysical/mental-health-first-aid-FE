@@ -8,9 +8,13 @@ import { Positives } from './Positives';
 import { Moods } from './Moods';
 
 import styles from './Profile.css';
+import { useHistory } from 'react-router-dom';
 
 export const Profile = () => {
-  const { user: { userName, collections, avatar, friendCode } } = useSelector(toGetAuth);
+  const { user: { userName, collections, avatar, friendCode, newUser } } = useSelector(toGetAuth);
+  const history = useHistory();
+
+  if(newUser) history.push(`/newuser?friendcode=${friendCode}&username=${userName}`);
 
   const renderOptions = collections ? collections.map(collection => {
     return (<Option key={collection} componentName={collection} />);
