@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { EventForm } from '../components/EventForm';
+import { MoodForm } from '../components/MoodForm';
 import { PositiveForm } from '../components/PositiveForm';
 import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { toGetEvent, toGetPositives, toGetMoods } from '../selectors/useSelectors';
 
 export const useNewUser = () => {
+  const { loading: eventCreated } = useSelector(toGetEvent);
+  const { loading: positiveCreated } = useSelector(toGetPositives);
+  const { loading: moodCreated } = useSelector(toGetMoods);
   const [currentRender, setCurrentRender] = useState((<></>));
   const [index, setIndex] = useState(0);
   const history = useHistory();
@@ -30,11 +36,20 @@ export const useNewUser = () => {
     {
       title: 'Looking Forward',
       text: 'What is one thing you are looking forward to?',
-      component: (<EventForm key={0} />)
+      component: (<EventForm key={0} />),
+      conditions: eventCreated
     },
     {
+      title: 'Feelings',
+      text: 'What is one thing you are looking forward to?',
+      component: (<MoodForm key={1} />),
+      conditions: moodCreated
+    },
+    {
+      title: 'Positives',
       text: 'What is something you like about your self?',
-      component: <PositiveForm key={1} />
+      component: <PositiveForm key={2} />,
+      conditions: positiveCreated
     },
     {
       text: `You can also have those close in your life send you positive messages. Just share this link: localhost:7890/positive?friendcode=${friendCode}. These messages can be sent anonymously, so please share it only with those you trust to say nice things about you`,
@@ -63,6 +78,4 @@ export const useNewUser = () => {
   };
 
   return { index, slides, currentRender, handleNext, handleBack };
-
-
-}
+};

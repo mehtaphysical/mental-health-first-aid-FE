@@ -24,9 +24,6 @@ export const useMoodForm = (state) => {
       setSuccess(true);
       setMoodName('');
       setSolutions(['new']);
-      setTimeout(() => {
-        setSuccess(false);
-      }, 2000);
     }
   };
   

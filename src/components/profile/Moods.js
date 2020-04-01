@@ -3,7 +3,7 @@ import { MoodForm } from '../MoodForm';
 import { useMood } from '../../hooks/useMood';
 
 export const Moods = () => {
-  const { allMoods, currentMood, handleEdit, handleDelete, selected, setSelected, editing, setEditing } = useMood();
+  const { allMoods, currentMood, handleEdit, handleDelete, selected, setSelected, editing, setEditing, loading } = useMood();
 
   const moodNameOptions = allMoods.map(({ moodName, _id }) => (<option key={_id} value={_id}>{moodName}</option>));
 
@@ -25,6 +25,8 @@ export const Moods = () => {
   return (
     <section>
       <h3>Currently Feeling</h3>
+      {loading ? <img style={{ height: '125px', margin: '-25px 0px' }} src="https://i.pinimg.com/originals/3f/2c/97/3f2c979b214d06e9caab8ba8326864f3.gif" /> : <></>}
+      
       <select 
         value={selected} 
         onChange={({ target }) => {

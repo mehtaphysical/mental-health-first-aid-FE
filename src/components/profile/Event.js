@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useEventForm } from '../../hooks/useEventForm';
 import { useEvent } from '../../hooks/useEvent';
 
 export const Event = () => {
-  const  { event, date, showEventForm, setShowEventForm, error } = useEvent();
+  const  { event, date, showEventForm, setShowEventForm, error, loading } = useEvent();
   const { title: titleInput, setTitle, date: dateInput, setDate, handleSubmit, success } = useEventForm();
 
   useEffect(() => {
@@ -13,6 +13,7 @@ export const Event = () => {
   return (
     <section>
       <h3>Looking Forward</h3>
+      {loading ? <img style={{ height: '125px', margin: '-25px 0px' }} src="https://i.pinimg.com/originals/3f/2c/97/3f2c979b214d06e9caab8ba8326864f3.gif" /> : <></>}
       <p>You are looking forward to</p>
       
       <p>{showEventForm || !event ? (<input required

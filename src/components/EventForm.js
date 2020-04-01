@@ -8,7 +8,7 @@ export const EventForm = () => {
     <p>Your Event has been created! You are looking forward to {title} on {date}!</p>
   ) : (
     <section>
-      <form onSubmit={handleSubmit}>
+      <div>
         <label>Title: 
           <input required
             type="text"
@@ -22,8 +22,8 @@ export const EventForm = () => {
             onChange={({ target }) => setDate(target.value)} />
         </label>
 
-        <button>Set Event</button>
-      </form>
+        <button onClick={handleSubmit}>Set Event</button>
+      </div>
     </section>
   );
 };

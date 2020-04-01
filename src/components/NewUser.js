@@ -12,7 +12,7 @@ export const NewUser = () => {
       <progress value={index} max={slides.length} />
       {currentRender}
       <button onClick={handleBack}>Back</button>
-      <button onClick={handleNext}>Next</button>
+      <button disabled={!!slides[index].conditions} onClick={handleNext}>Next</button>
     </section>
   );
 };

@@ -5,7 +5,7 @@ import { toGetMoods } from '../selectors/useSelectors';
 
 export const useMood = () => {
   const dispatch = useDispatch();
-  const { allMoods, currentMood, updated } = useSelector(toGetMoods);
+  const { allMoods, currentMood, updated, loading } = useSelector(toGetMoods);
 
   const [selected, setSelected] = useState('default');
   const [editing, setEditing] = useState(false);
@@ -30,5 +30,5 @@ export const useMood = () => {
     }
   };
 
-  return { allMoods, currentMood, handleEdit, handleDelete, selected, setSelected, editing, setEditing };
+  return { allMoods, currentMood, handleEdit, handleDelete, selected, setSelected, editing, setEditing, loading };
 };

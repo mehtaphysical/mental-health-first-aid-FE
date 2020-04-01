@@ -21,7 +21,7 @@ export const Positives = () => {
   return (
     <section>
       <h3>Positives{unread > 0 ? (<span> - {unread} new</span>) : (<></>)}</h3>
-      {loading ? <img style={{ height: '64px' }} src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/35771931234507.564a1d2403b3a.gif" /> : <></>}
+      {loading ? <img style={{ height: '125px', margin: '-25px 0px' }} src="https://i.pinimg.com/originals/3f/2c/97/3f2c979b214d06e9caab8ba8326864f3.gif" /> : <></>}
       <div>
         {!loading && render}
         <button onClick={handleGetNext}>Get Another</button>
