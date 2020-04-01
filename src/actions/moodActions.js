@@ -1,4 +1,4 @@
-import { postMood, getMoods, deleteMood } from '../services/moodServices';
+import { postMood, getMoods, deleteMood, updateMood } from '../services/moodServices';
 
 export const SET_MOOD_LOADING = 'SET_MOOD_LOADING';
 export const SET_MOOD_DONE = 'SET_MOOD_DONE';
@@ -31,7 +31,7 @@ export const setMoodError = error => ({
   payload: error
 });
 
-export const sendMood = (mood) => dispatch => {
+export const fetchPostMood = (mood) => dispatch => {
   dispatch(setMoodLoading());
   return postMood(mood)
     .then(() => {
@@ -41,7 +41,7 @@ export const sendMood = (mood) => dispatch => {
     .catch(moodError => dispatch(setMoodError(moodError)));
 };
 
-export const getAllMoods = () => dispatch => {
+export const fetchGetAllMoods = () => dispatch => {
   dispatch(setMoodLoading());
   return getMoods()
     .then(moods => {
@@ -52,7 +52,17 @@ export const getAllMoods = () => dispatch => {
     .catch(moodError => dispatch(setMoodError(moodError)));
 };
 
-export const deleteMoodAction = id => dispatch => {
+export const fetchPatchMood = (id, body) => dispatch => {
+  dispatch(setMoodLoading());
+  return updateMood(id, body)
+    .then(() => {
+      dispatch(moodsNeedToBeUpdate());
+      return dispatch(setMoodDone());
+    })
+    .catch(moodError => dispatch(setMoodError(moodError)));
+};
+
+export const fetchDeleteMood = id => dispatch => {
   dispatch(setMoodLoading());
   return deleteMood(id)
     .then(() => {

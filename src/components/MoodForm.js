@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useMoodForm } from '../hooks/useMoodForm';
 import { Solution } from './Solution';
 
-export const MoodForm = ({ importMoodName, importSolutions }) => {
+export const MoodForm = ({ importId, importMoodName, importSolutions }) => {
   const { success, 
     handleSubmit, 
     moodName, 
@@ -11,7 +11,8 @@ export const MoodForm = ({ importMoodName, importSolutions }) => {
     solutions, 
     setSolutions, 
     handleKeyPress, 
-    handleAdd } = useMoodForm({ 
+    handleAdd } = useMoodForm({
+    id: importId,
     moodName: importMoodName, 
     solutions: importSolutions });
 
@@ -47,6 +48,7 @@ export const MoodForm = ({ importMoodName, importSolutions }) => {
 };
 
 MoodForm.propTypes = {
+  importId: PropTypes.string,
   importMoodName: PropTypes.string,
   importSolutions: PropTypes.array
 };
