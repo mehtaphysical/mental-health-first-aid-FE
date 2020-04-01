@@ -7,13 +7,16 @@ export const useEventForm = () => {
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState();
 
   const handleSubmit = () => {
-    return dispatch(fetchPatchEvent({ title, date }))
+    if(!title || !date) setError('All feilds must be filled out');
+    else return dispatch(fetchPatchEvent({ title, date }))
       .then(res => {
         if(res.type === SET_EVENT_ERROR) throw new Error(res.payload.message);
+        else setSuccess(true);
       });
   };
 
-  return { title, setTitle, date, setDate, success, setSuccess, handleSubmit };
+  return { title, setTitle, date, setDate, success, setSuccess, error, handleSubmit };
 };
