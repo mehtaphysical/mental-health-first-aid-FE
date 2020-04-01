@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { EventForm } from '../components/EventForm';
 import { MoodForm } from '../components/MoodForm';
 import { PositiveForm } from '../components/PositiveForm';
+import { CopyLink } from '../components/CopyLink';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { toGetEvent, toGetPositives, toGetMoods } from '../selectors/useSelectors';
@@ -16,26 +17,37 @@ export const useNewUser = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  console.log(eventCreated, positiveCreated, moodCreated);
-
   const friendCode = new URLSearchParams(location.search).get('friendcode');
 
   const slides = [
     {
-      title: 'Hello!',
-      text: 'The goal of this app is for you, the user, to be in control and only add what is helpful to you.'
+      title: 'Positives',
+      text: 'Or you can send the link below to the people who lift you up, and they can send you a positive message. (They don’t need an account).',
+      component: <CopyLink key={4} link={`localhost:7890/positive?friendcode=${friendCode}`} />
     },
     {
       title: 'Hello!',
-      text: 'We want using this app to be an easy, stressfree exprience.'
+      text: 'The goal of this app if to give you the tools for you to be in control.'
     },
     {
       title: 'Hello!',
-      text: 'So let\'s get started by introducing you to some fetures you may want to use. After we\'re done, we will go to your profile where you can customize more for what you need.'
+      text: 'Ideally you should be able to open this app, and go directly to things that will help you for where ever your mental health is at the moment.'
+    },
+    {
+      title: 'Hello!',
+      text: 'At the moment your mental health first-aid kit is empty,'
+    },
+    {
+      title: 'Hello!',
+      text: 'Let’s start filling it!'
     },
     {
       title: 'Looking Forward',
-      text: 'Having something to look forward to is important. It can be something big, like a holiday, or something small, like eating breakfast.'
+      text: 'Feelings won’t last forever, they come and go in waves.'
+    },
+    {
+      title: 'Looking Forward',
+      text: 'One way to remind yourself that this too shall pass is to give yourself something that you are looking forward to, that you can be excited about right now.'
     },
     {
       title: 'Looking Forward',
@@ -44,10 +56,38 @@ export const useNewUser = () => {
       conditions: eventCreated
     },
     {
+      title: 'Looking Forward',
+      text: 'You can update this anytime, whether the event has happened or not.'
+    },
+    {
+      title: 'Feelings',
+      text: 'Sometimes strong feelings come on and it’s hard to think clearly about what you might want to do in response..'
+    },
+    {
+      title: 'Feelings',
+      text: 'Sometimes there’s we can’t get rid of the feeling, but we can find ways to sit with it or get through it.'
+    },
+    {
       title: 'Feelings',
       text: 'What is a feeling you\'ve struggled with, and what are some things you might do in response?',
       component: (<MoodForm key={1} />),
       conditions: moodCreated
+    },
+    {
+      title: 'Feelings',
+      text: 'As you discover what works and what doesn’t, you can update your lists.'
+    },
+    {
+      title: 'Feelings',
+      text: 'And you can add as many “Feelings” as you like.'
+    },
+    {
+      title: 'Positives',
+      text: 'There are so many wonderful things about you!'
+    },
+    {
+      title: 'Positives',
+      text: 'Take a moment to send a message your future self with something you admire/like/value about who you are.'
     },
     {
       title: 'Positives',
@@ -57,7 +97,12 @@ export const useNewUser = () => {
     },
     {
       title: 'Positives',
-      text: `You can also have those close in your life send you positive messages. Just share this link: localhost:7890/positive?friendcode=${friendCode}. These messages can be sent anonymously, so please share it only with those you trust to say nice things about you`,
+      text: 'You can continue to add more and more positive messages to yourself.'
+    },
+    {
+      title: 'Positives',
+      text: 'Or you can send the link below to the people who lift you up, and they can send you a positive message. (They don’t need an account).',
+      component: <CopyLink key={4} link={`localhost:7890/positive?friendcode=${friendCode}`} />
     },
     {
       text: 'You are all done!',
